@@ -1,37 +1,100 @@
 #include <iostream>
+#include <list>
 #include <stack>
-
 using namespace std;
+
+typedef struct
+{
+    int vis;
+    string nome;
+    list <string> rel;
+} lista;
+
+int procurar(lista V[], string nomee)
+{
+    int i = 0;
+    while(V[i].nome != nomee)
+        i++;
+    return i;
+};
 
 int main()
 {
-    string valor;
-    int cont,i ,j , d;
+    lista cod;
+    int tam, val, i, cont = 0, T;
+    cin >> val >> tam;
 
-    cin >> cont;
-    cin.get();
+    string rela, nome[tam], nome2[tam], nomee;
+    list <string> ::iterator I;
+    stack <string> nomes;
+    list <string> temp;
+    lista V[val];
 
-    for(i = 0; i < cont; i++)
+    for(i = 0; i < tam; i++)
     {
-        stack <char> diamantes;
-        d = 0;
-        getline(cin, valor, '\n');
-        for(j = 0; j < valor.size(); j++)
+        cin.get();
+        cin >> nome[i] >> rela >> nome2[i];
+        temp.push_back(nome[i]);
+        temp.push_back(nome2[i]);
+    }
+
+    temp.sort();
+    temp.unique();
+    I = temp.begin();
+
+    for(i = 0; i < val; i++)
+    {
+        V[i].nome = *I;
+        I++;
+        V[i].vis = 0;
+    }
+    for(i = 0; i < tam; i++)
+    {
+        nomee = nome[i];
+        V[procurar(V, nomee)].rel.push_back(nome2[i]);
+        nomee = nome2[i];
+        V[procurar(V, nomee)].rel.push_back(nome[i]);
+    }
+    /*
+    cout << endl;
+    for(i = 0; i < val; i++)
+    {
+        cout << V[i].nome << ": ";
+        for(I = V[i].rel.begin(); I != V[i].rel.end(); I++)
         {
-            if(valor[j] == '<')
+            cout << *I << " ";
+        }
+        cout << endl;
+    }
+    */
+    for( i = 0; i < val; i++)
+    {
+        if(V[i].vis == 0)
+        {
+            cont++;
+            V[i].vis = 1;
+            for(I = V[i].rel.begin(); I != V[i].rel.end(); I++)
             {
-                diamantes.push('<');
+                if(V[procurar(V, *I)].vis == 0)
+                    nomes.push(*I);
             }
-            else
+            while(!nomes.empty())
             {
-                if(valor[j] == '>' && !diamantes.empty())
+                T = procurar(V, nomes.top());
+                nomes.pop();
+                if(V[T].vis == 0)
                 {
-                    d++;
-                    diamantes.pop();
+                    V[T].vis = 1;
+                    for(I = V[T].rel.begin(); I != V[T].rel.end(); I++)
+                    {
+                        if(V[procurar(V, *I)].vis == 0)
+                            nomes.push(*I);
+                    }
                 }
             }
+
         }
-        cout << d << endl;
     }
-    return 0;
+    cout << cont << endl;
+
 }
