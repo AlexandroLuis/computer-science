@@ -1,42 +1,142 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
-void selectionsort(int v[], int n)
+int leitura(int *V, int tam)
 {
-    int i, j, aux, min;
+    printf("Digite os valores\n");
+    for(int i = 0; i < tam; i++)
+        scanf("%d", (V+i));
+}
 
-    for(i = 0; i < n-1; i++)
+void bubble(int *V, int tam)
+{
+    int aux = 0, Cont;
+    Cont = 0;
+    for(int i = 0; i < tam-1; i++)
+    {
+        for(int j = 0; j < tam-1- i; j++)
+        {
+            if(*(V+j) > *(V+j+1))
+            {
+                aux = *(V+j);
+                *(V+j) = *(V+j+1);
+                *(V+j+1) = aux;
+                Cont++;
+            }
+        }
+    }
+    system("cls");
+    printf("Crescente:\n\t");
+    for(int i = 0; i < tam; i++)
+        printf("%d\t", *(V+i));
+    printf("\nContador: %d", Cont);
+
+    Cont = 0;
+    for(int i = 0; i < tam-1; i++)
+    {
+        for(int j = 0; j < tam-1- i; j++)
+        {
+            if(*(V+j) < *(V+j+1))
+            {
+                aux = *(V+j);
+                *(V+j) = *(V+j+1);
+                *(V+j+1) = aux;
+                Cont++;
+            }
+        }
+    }
+    printf("\n\nDecrescente:\n\t");
+    for(int i = 0; i < tam; i++)
+        printf("%d\t", *(V+i));
+    printf("\nContador: %d", Cont);
+
+}
+
+void selection(int *V, int tam)
+{
+    auto min, aux, Cont, nome;
+
+    Cont = 0;
+    for(int i = 0; i < tam-1; i++)
     {
         min = i;
-        for(j = i+1; j < n; j++)
+        for(int j = i+1; j < tam; j++)
         {
-            if(v[j] < v[min])
+            if(*(V+i) < *(V+min))
                 min = j;
         }
         if(i!= min)
         {
-            aux = v[i];
-            v[i] = v[min];
-            v[min] = aux;
+            aux = *(V+i);
+            *(V+i) = *(V+min);
+            *(V+min) = aux;
         }
-        for(int k = 0; k < n; k++)
-            printf("%d\t", v[k]);
-        printf("\n");
     }
+    system("cls");
+    printf("Crescente:\n\t");
+    for(int i = 0; i < tam; i++)
+        printf("%d\t", *(V+i));
+    printf("\nContador: %d", Cont);
+
+    printf("\n\nDecrescente:\n\t");
+    for(int i = 0; i < tam; i++)
+        printf("%d\t", *(V+i));
+    printf("\nContador: %d", Cont);
+
 }
+
+void insertion(int *V, int tam)
+{
+
+}
+
+void merge(int *V, int tam)
+{
+
+}
+
 int main()
 {
-    const int n = 9;
-    int v[]={71, 63, 46, 80, 39, 92, 55, 14, 27};
-    selectionsort(v, n);
+    system("color 6");
 
-    /*
-    14      63      46      80      39      92      55      71      27
-    14      27      46      80      39      92      55      71      63
-    14      27      39      80      46      92      55      71      63
-    14      27      39      46      80      92      55      71      63
-    14      27      39      46      55      92      80      71      63
-    14      27      39      46      55      63      80      71      92
-    14      27      39      46      55      63      71      80      92      
-    */
+    auto *V, tipo, tam;
+
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &tam);
+
+    V = malloc(tam * sizeof(int));
+
+    printf("1- Para Bubble Sort\n2- Para Selection Sort\n3- Para Insertion Sort\n4- Para Merge Sort\n");
+    scanf("%d", &tipo);
+    system("cls");
+
+    if(tipo == 1)
+    {   printf("Bubble Escolhido.\n");
+        leitura(V, tam);
+        bubble(V, tam);
+    }
+    else
+    {
+        if(tipo == 2)
+        {   printf("Selection Escolhido.\n");
+            leitura(V, tam);
+            selection(V, tam);
+        }
+        else
+        {
+            if(tipo == 3)
+            {   printf("Insertion Escolhido.\n");
+                leitura(V, tam);
+                insertion(V, tam);
+            }
+            else
+            {   printf("Merge Escolhido.\n");
+                leitura(V, tam);
+                merge(V, tam);
+            }
+        }
+    }
+    V = (free);
+    V = NULL;
 }
