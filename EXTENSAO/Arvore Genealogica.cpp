@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <stack>
 using namespace std;
 
 typedef struct
@@ -25,6 +26,7 @@ int main()
 
     string rela, nome[tam], nome2[tam], nomee;
     list <string> ::iterator I;
+    stack <string> nomes;
     list <string> temp;
     lista V[val];
 
@@ -46,7 +48,6 @@ int main()
         I++;
         V[i].vis = 0;
     }
-
     for(i = 0; i < tam; i++)
     {
         nomee = nome[i];
@@ -54,12 +55,46 @@ int main()
         nomee = nome2[i];
         V[procurar(V, nomee)].rel.push_back(nome[i]);
     }
-
+    /*
+    cout << endl;
     for(i = 0; i < val; i++)
+    {
+        cout << V[i].nome << ": ";
+        for(I = V[i].rel.begin(); I != V[i].rel.end(); I++)
+        {
+            cout << *I << " ";
+        }
+        cout << endl;
+    }
+    */
+    for( i = 0; i < val; i++)
     {
         if(V[i].vis == 0)
         {
-            
+            cont++;
+            V[i].vis = 1;
+            for(I = V[i].rel.begin(); I != V[i].rel.end(); I++)
+            {
+                if(V[procurar(V, *I)].vis == 0)
+                    nomes.push(*I);
+            }
+            while(!nomes.empty())
+            {
+                T = procurar(V, nomes.top());
+                nomes.pop();
+                if(V[T].vis == 0)
+                {
+                    V[T].vis = 1;
+                    for(I = V[T].rel.begin(); I != V[T].rel.end(); I++)
+                    {
+                        if(V[procurar(V, *I)].vis == 0)
+                            nomes.push(*I);
+                    }
+                }
+            }
+
         }
     }
+    cout << cont << endl;
+
 }
