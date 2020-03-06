@@ -22,7 +22,7 @@ public class conta{		// atributos private
 	}
 
 	public void exibe(){		// metodos public
-		System.ou.println(conta+" "+saldo);
+		System.ou.println(saldo+" "+tipo);
 	}
 }
 
