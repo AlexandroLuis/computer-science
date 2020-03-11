@@ -1,6 +1,6 @@
 public class  Ponto2D{
-	double x, y, mx = my = 0;
-	int i = 0;
+	private double x, y;
+	static int i = 0;
 	
 	public Ponto2D(){
 		x = y = 0;
@@ -21,16 +21,12 @@ public class  Ponto2D{
 		return y;
 	}
 	
-	public void mostrarxy(double x, double y){
-		mx = x;
-		my = y;
-		
-		System.out.printf("%0.2f\t", mx);
-		System.out.printf("%0.2f\n", my);
+	public void mostrarxy(){
+		System.out.printf("%f\t", x);
+		System.out.printf("%.2f\n", y);
 	}
 	
 	public static int geti(){
 		return i;
 	}
-
 }
