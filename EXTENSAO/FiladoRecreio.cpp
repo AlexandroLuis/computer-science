@@ -29,32 +29,3 @@ int main()
         cout << r << endl;
     }
 }
-
-
-#include <iostream>
-
-using namespace std;
-
-int main()
-{
-    int cont1, cont2, valor, r;
-
-    cin >> cont1;
-    for(int i = 0; i < cont1; i++)
-    {
-        cin >> cont2;
-        int v[cont2];
-
-        for(int j = 0; j < cont2; j++)
-        {
-            cin >> v[j];
-        }
-        r = cont2;
-        for(int k = 0; k < cont2; k++)
-        {
-            if(v[k] << v[k+1])
-                r--;
-            cout << r << endl;
-        }
-    }
-}
