@@ -26,7 +26,7 @@ public class ordem{
         else if(V1[i] > V1[i+1])
           b += 1;
         else
-          b += 3; 
+          b += 999; 
 		}
     
     if(b == 0)
