@@ -2,6 +2,9 @@
 	<head>
 		<title></title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		<style>
 			body {
 				background-color:white; 
@@ -39,14 +42,14 @@
 	
 	<div class="tab-container">
         <h2>Exercicios Uri Cadastrados</h2>
-        <table style="text-align:center;">
+        <table border="0" style="text-align:center;">
             <tr>
-                <th width="75" align="center">ID</th>
-                <th width="100">Nome</th>
-                <th width="400">Descrição</th>
-                <th width="100">Classificação</th>
-                <th width="150">Dificuldade</th>
-				<th>Código</th>
+                <th width="100"  style="text-align:center;">ID</th>
+                <th width="150"  style="text-align:center;">Nome</th>
+                <th width="400"  style="text-align:center;">Descrição</th>
+                <th width="200"  style="text-align:center;">Classificação</th>
+                <th width="150"  style="text-align:center;">Dificuldade</th>
+				<th width="150"  style="text-align:center;">Código</th>
             </tr>
 			<?php
 				ini_set('display_errors', 0 );
@@ -68,7 +71,30 @@
 							<td>" .$row['description'] ."</td>
 							<td>" .$row['class'] ."</td>
 							<td>" .$row['level'] ."</td>
-							<td>" .$row['source'] ."</td>";
+							<td>"?>
+								<a href="" data-toggle="modal" data-target="#exampleModalLong">Mostrar Código</a>
+									<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+										<div class="modal-content">
+										  <div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLongTitle">Código</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										  </div>
+										  <div class="modal-body">
+											<?php
+												echo "" .$row['source'] ."";
+											?>
+										  </div>
+										  <div class="modal-footer">
+											<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+										  </div>
+										</div>
+									  </div>
+									</div>
+							<?php
+							"</td>";
 					$linha++;
 				}
 				mysqli_free_result($result);
