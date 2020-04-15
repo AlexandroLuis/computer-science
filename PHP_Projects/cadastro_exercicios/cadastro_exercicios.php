@@ -1,6 +1,6 @@
 <html>
 	<head>	
-		<meta http-equiv="refresh" content="2; url=index.html">
+		<meta http-equiv="refresh" content="2; url=index.php">
 		<meta charset=".utf-8">
 		<script type="text/javascript"></script>
 	</head>

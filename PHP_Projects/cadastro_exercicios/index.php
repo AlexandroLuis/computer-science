@@ -3,36 +3,9 @@
 		<title></title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<style>
-			body {
-				background-color:white; 
-			}
-			ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-				overflow: hidden;
-				background-color: #1E1E1E;
-			}
-			li {
-			  float: left;
-			}
-			li a {
-			  display: block;
-			  color: white;
-			  text-align: center;
-			  padding: 15px 17px;
-			  text-decoration: none;
-			}
-			li a:hover:not(.active) {
-			  background-color: #111;
-			}
-			.active {
-			  background-color: #4CAF50;
-			}
-		</style>
 	</head>
 <body>
 	<ul>

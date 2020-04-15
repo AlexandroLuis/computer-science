@@ -2,47 +2,11 @@
 	<head>
 		<title></title>
 		<meta charset="utf-8">
-		<style>
-			#id1{	
-				text-align:left;
-				width:200px;
-				height:200px;
-				float:left;	
-
-			}
-			#id2{		
-				position: absolute;
-				bottom: 0;
-				text-align:right;
-				width:680px;
-				height:156px;
-				float:left;	
-
-			}
-			ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-				overflow: hidden;
-				background-color: #1E1E1E;
-			}
-			li {
-			  float: left;
-			}
-			li a {
-			  display: block;
-			  color: white;
-			  text-align: center;
-			  padding: 15px 17px;
-			  text-decoration: none;
-			}
-			li a:hover:not(.active) {
-			  background-color: #111;
-			}
-			.active {
-			  background-color: #4CAF50;
-			}
-		</style>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	</head>
 <body>
 	<ul>
@@ -50,7 +14,7 @@
 		<li style="float:right"><a href="index.php">Exercicios Uri</a></li>
 	</ul>
 	
-	<h2>Cadastro De Clientes</h2>
+	<h2>Cadastrar Exercicios Uri</h2>
 	
 	<form action="cadastro_exercicios.php" method="POST" />
 		<p align="center"><br><br>
