@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void mostra(int A[], int Linha){
+void mostra(int A[], int Linha){ // MOSTRA AS CHAVES GERADAS
     int k;
     for(k = 0; k < Linha; k++){
         if(k == 5 || k == 11)
@@ -17,7 +17,7 @@ int main(){
     int A[Linha];
     int i, j, k, c = 0;
 
-    for(i = 0; i < Linha; i++)
+    for(i = 0; i < Linha; i++)// LIMPA VETOR
         A[i] = 0;
 
     for(i = 0; i < Linha; i++){
