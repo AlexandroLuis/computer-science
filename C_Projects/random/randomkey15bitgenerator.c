@@ -1,8 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
+void mostra(int A[], int Linha){
+    int k;
+    for(k = 0; k < Linha; k++){
+        if(k == 5 || k == 11)
+            printf("-");
+        else
+            (A[k]<10)?printf("%d", A[k]):printf("%c", A[k]);
+    }
+    printf("\n\n");
+}
+
+int main(){
     const int Linha = 17;
     int A[Linha];
     int i, j, k, c = 0;
@@ -14,33 +24,15 @@ int main()
         for(j = 0; j < 36; j++){
             if(j < 10){
                 A[i] = j;
-                for(k = 0; k < Linha; k++){
-                    if(k == 5 || k == 11)
-                        printf("-");
-                    else
-                        (A[k]<10)?printf("%d", A[k]):printf("%c", A[k]);
-                }
-                printf("\n\n");
+                mostra(A, Linha);
             }
             else if(j > 9 && j < 10){
                 A[i] = 65;
-                for(k = 0; k < Linha; k++){
-                    if(k == 5 || k == 11)
-                        printf("-");
-                    else
-                        (A[k]<10)?printf("%d", A[k]):printf("%c", A[k]);
-                }
-                printf("\n\n");
+                mostra(A, Linha);
             }
             else{
                 A[i] = 55+j;
-                for(k = 0; k < Linha; k++){
-                    if(k == 5 || k == 11)
-                        printf("-");
-                    else
-                        (A[k]<10)?printf("%d", A[k]):printf("%c", A[k]);
-                }
-                printf("\n\n");
+                mostra(A, Linha);
             }
             c++;
         }
