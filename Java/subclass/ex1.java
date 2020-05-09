@@ -6,6 +6,13 @@ public class Retangulo extends TwoDShape {
     else
         return 0;
  }
+ public setarea(double largura, double altura){
+	this.largura = largura;
+	this.altura = altura;
+ }
+ public getarea(){
+  return largura*altura;
+ }
  public double area() {
  return (largura * altura);
  }
