@@ -73,20 +73,14 @@ int verificaSeVazia_Fila(no **L) {
 }
 
 void comparar(no **L1, no **L2, no **L3){
-    no *aux_stack;
-    int i;
-
-    for(i = 0; i < 19; i++){
-        aux_stack = *L1;
-        if(aux_stack % 2 == 0){
-            insere_Fila(&L2, &L1);
-            *L2 = (*L2)->link;
-        }
-        else{
-            insere_Fila(&L3, &L1);
-            *L3 = (*L3)->link;
-        }
-        *L1  = (*L1)->link;
-    }
-    remove_Fila(&L1, i);
+    int aux_stack;
+    int i, aux;
+	while(verificaSeVazia_Fila(L1) != 1) {
+		remove_Fila(L1, &aux);
+		if(aux % 2 == 0) {
+			insere_Fila(L2, aux);
+		} else {
+			insere_Fila(L3, aux);
+		}
+	}
 }
