@@ -23,6 +23,4 @@ int main()
 
     free(ponteiro);
     ponteiro = NULL;
-
 }
-
