@@ -20,7 +20,7 @@ void list(int V[], int T){//MOSTRA OS ELEMENTOS DO VETOR
 }
 
 void ordma(int V[], int T){// ORDENA DO MENOR AO MAIOR, BUBBLE SORT
-    int aux, menor = -999;
+    int aux;
     for(int i = 0; i < T - 1; i++){
          for(int j = 0; j < T - 1; j++){
              if(V[j] > V[j + 1]){
@@ -33,7 +33,7 @@ void ordma(int V[], int T){// ORDENA DO MENOR AO MAIOR, BUBBLE SORT
 }
 
 void ordme(int V[], int T){// ORDENA DO MENOR PARA O MAIOR, BUBBLE SORT
-    int aux, menor = 999;
+    int aux;
     for(int i = 0; i < T - 1; i++){
          for(int j = 0; j < T - 1; j++){
              if(V[j] < V[j + 1]){
