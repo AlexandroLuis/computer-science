@@ -117,8 +117,7 @@
 			?>
 			<?php
 				require('conexao.php');
-				$result = mysqli_query($db, "SELECT * FROM exercicio");
-				 
+				
 				 // Formas para ordenar o banco de dados!
 				if($_GET['ordem'] == "crescente") // Dificuldade
 					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level desc");
@@ -136,7 +135,8 @@
 					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status desc");
 				else if($_GET['ordem'] == "notrealizada")
 					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status asc");
-				
+				else
+					$result = mysqli_query($db, "SELECT * FROM exercicio"); //Padrão
 				//termina a ordenação
 				
 				if(!$result){
