@@ -20,12 +20,12 @@ li a{
 		text-decoration: none;
 	}
 li a:hover:not(.active) {
-		background-color: #111;
+		text-decoration: none;
 	}
-.active {
-		 background-color: #4CAF50;
-}
 
+a:link, a:visited {
+	text-decoration: none
+	}
 
 #id1{	
 				text-align:left;

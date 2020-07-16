@@ -1,3 +1,7 @@
+<!--  
+	Desenvolvido por https://github.com/Alexandro-845
+	Versão 1.0 - 2020
+-->
 <?php
 	include('verifica_login.php');
 ?>
@@ -10,6 +14,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		<style>
+			a:link, a:visited {
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: none; 
+				color: none;
+			}
 			.dropbtn:hover, .dropbtn:focus {
 			  background-color: #2980B9;
 			}
@@ -23,7 +34,7 @@
 			  display: none;
 			  position: absolute;
 			  background-color: #f1f1f1;
-			  min-width: 160px;
+			  min-width: 100px;
 			  overflow: auto;
 			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 			  z-index: 1;
@@ -31,7 +42,7 @@
 
 			.dropdown-content a {
 			  color: black;
-			  padding: 12px 16px;
+			  padding: 10px 13px;
 			  text-decoration: none;
 			  display: block;
 			}
@@ -53,43 +64,51 @@
             <tr>
                 <th width="100"  style="text-align:center;">ID</th>
                 <th width="150"  style="text-align:center;">Nome</th>
-                <th width="400"  style="text-align:center;">Descrição</th>
-			 	<th width="150"  style="text-align:center;">
-					<a onclick="e2pc()" class="dropbtn">E2PC</a>
-						<div id="e2pc" class="dropdown-content">
-							<a href="painel.php?ordem=p1&campo=data">F1</a>
-							<a href="painel.php?ordem=p2&campo=data">F2</a>
-						</div>
-				</th>
-				<th width="150"  style="text-align:center;">
+				<th width="100"  style="text-align:center;">
 					<a onclick="classificacao()" class="dropbtn">Classificação</a>
 						<div id="classificacao" class="dropdown-content">
-							<a href="painel.php?ordem=f1&campo=data">F1</a>
-							<a href="painel.php?ordem=f2&campo=data">F2</a>
+							<a href="painel.php?ordem=class&campo=data">Ordenar por classificação</a>
+						</div>
+				</th>
+                <th width="400"  style="text-align:center;">Descrição</th>
+				<th width="100"  style="text-align:center;">
+					<a onclick="tipo()" class="dropbtn">Tipo</a>
+						<div id="tipo" class="dropdown-content">
+							<a href="painel.php?ordem=tipo1&campo=data">Ordenar Por tipo</a>
+						</div>
+				</th>			 					
+				<th width="150"  style="text-align:center;">
+					<a onclick="dificuldadee2pc()" class="dropbtn">Dificuldade e2pc</a>
+						<div id="dificuldadee2pc" class="dropdown-content">
+							<a href="painel.php?ordem=dificuldadee2pc1&campo=data">Crescente</a>
+							<a href="painel.php?ordem=dificuldadee2pc2&campo=data">Decrescente</a>
 						</div>
 				</th>
 				<th width="200"  style="text-align:center;">
 					<a onclick="dificuldade()" class="dropbtn">Dificuldade</a>
 						<div id="dificuldade" class="dropdown-content">
-							<a href="painel.php?ordem=crescente&campo=data">Crescente</a>
-							<a href="painel.php?ordem=decrescente&campo=data">Decrescente</a>
+							<a href="painel.php?ordem=dificuldade1&campo=data">Crescente</a>
+							<a href="painel.php?ordem=dificuldade2&campo=data">Decrescente</a>
 						</div>
 				</th>
 				<th width="100"  style="text-align:center;">
 					<a onclick="status()" class="dropbtn">Status</a>
 						<div id="status" class="dropdown-content">
-							<a href="painel.php?ordem=realizada&campo=data">Realizadas</a>
-							<a href="painel.php?ordem=notrealizada&campo=data">Não Realizadas</a>
+							<a href="painel.php?ordem=status1&campo=data">Realizadas</a>
+							<a href="painel.php?ordem=status2&campo=data">Não Realizadas</a>
 						</div>
 				</th>
             </tr>
 			<script> // Função para fazer o  dropdown
-				function e2pc() { 
-				  document.getElementById("e2pc").classList.toggle("show");
-				}				
 				function classificacao() {
 				  document.getElementById("classificacao").classList.toggle("show");
-				}								
+				}	
+				function tipo() { 
+				  document.getElementById("tipo").classList.toggle("show");
+				}				
+				function dificuldadee2pc() {
+				  document.getElementById("dificuldadee2pc").classList.toggle("show");
+				}							
 				function dificuldade() {
 				  document.getElementById("dificuldade").classList.toggle("show");
 				}
@@ -118,26 +137,26 @@
 			<?php
 				require('conexao.php');
 				
-				 // Formas para ordenar o banco de dados!
-				if($_GET['ordem'] == "crescente") // Dificuldade
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level desc");
-				else if($_GET['ordem'] == "decrescente")
+				// Formas para ordenar o banco de dados!	
+				if($_GET['ordem'] == "class")//Classificação
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY class desc");					
+				else if($_GET['ordem'] == "tipo1")//Tipo
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY tipo desc");					
+				else if($_GET['ordem'] == "dificuldadee2pc1")//Dificuldade E2PC
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY dificuldadee2pc asc");
+				else if($_GET['ordem'] == "dificuldadee2pc2") 
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY dificuldadee2pc desc");					
+				else if($_GET['ordem'] == "dificuldade1")//Dificuldade 
 					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level asc");
-				else if($_GET['ordem'] == "p1") // E2PC
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY e2pc desc");
-				else if($_GET['ordem'] == "p2")
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY e2pc asc");
-				else if($_GET['ordem'] == "f1") // Classificação
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY class desc");
-				else if($_GET['ordem'] == "f2")
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY class asc");
-				else if($_GET['ordem'] == "realizada")//Status
+				else if($_GET['ordem'] == "dificuldade2")
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level desc");					
+				else if($_GET['ordem'] == "status1")//Status
 					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status desc");
-				else if($_GET['ordem'] == "notrealizada")
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status asc");
-				else
-					$result = mysqli_query($db, "SELECT * FROM exercicio"); //Padrão
-				//termina a ordenação
+				else if($_GET['ordem'] == "status2")
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status asc");					
+				else//Padrão
+					$result = mysqli_query($db, "SELECT * FROM exercicio");
+				//Fim da ordenação
 				
 				if(!$result){
 					echo "" ;
@@ -149,9 +168,10 @@
 					echo "<tr>
 							<td>" .$row['id'] ."</td>
 							<td>" ."<a href=https://www.urionlinejudge.com.br/judge/pt/problems/view/".$row['id'] ."''>".$row['name'] ."</a></td>
+							<td>" .$row['class'] ."</td>
 							<td>" .$row['description'] ."</td>
 							<td>" .$row['classe2pc'] ."</td>
-							<td>" .$row['class'] ."</td>
+							<td>" .$row['level2pc'] ."</td>
 							<td>" .$row['level'] ."</td>
 							<td>" .$row['status'] ."</td>";
 					$linha++;
