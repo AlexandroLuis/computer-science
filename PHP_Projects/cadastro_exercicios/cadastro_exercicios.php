@@ -1,6 +1,6 @@
 <html>
 	<head>	
-		<meta http-equiv="refresh" content="2; url=index.php">
+		<meta http-equiv="refresh" content="2; url=Admin.php">
 		<meta charset=".utf-8">
 		<script type="text/javascript"></script>
 	</head>
@@ -9,19 +9,21 @@
 	ini_set('display_errors', 0 );
 	error_reporting(0);
 ?>
-<?php 
+<?php
 
 	$id=$_POST ['id'];
 	$name=$_POST ['name'];
-	$description=$_POST ['description'];
 	$class=$_POST ['class'];
+	$description=$_POST ['description'];
+	$type=$_POST ['type'];
+	$level2pc=$_POST ['level2pc'];
 	$level=$_POST ['level'];
 	$source=$_POST ['source'];
 	
 		
 	
 	Require ('conexao.php');
-	$sqlinsert ="insert into exercicio values ('$id','$name','$description','$class','$level','$source')";
+	$sqlinsert ="insert into exercicio values ('$id','$name','$class','$description','$type','$level2pc','$level','0','$source')";
 	
 	mysqli_query($db, $sqlinsert) or die ('NÃO FOI POSSIVEL INSERIR :(');
 	echo "<script> alert ('cadastro realizado com sucesso :)')</script>"; 
