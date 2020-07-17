@@ -20,6 +20,9 @@
 	$level=$_POST ['level'];
 	$source=$_POST ['source'];
 	
+	echo"Valor de Código a ser guardado: ";
+	echo nl2br($_POST['source']);
+	
 		
 	
 	Require ('conexao.php');
