@@ -30,29 +30,36 @@
 		<tr>	
 			<td>
 				ID: <input type="text" name="id" size="50"/><br><br>
+				
 				Nome:<input type="text" name="name" size="50" placeholder="Máximo 15 caracteres"/><br><br>
-			Classificação:  <select name="class">
-								<option value="Iniciante">Iniciante</option>
-								<option value="AD-HOC">AD-HOC</option>
-								<option value="String">String</option>
-								<option value="AEd">AEd</option>
-								<option value="Matemática">Matemática</option>
-								<option value="Paradigma">Paradigma</option>
-								<option value="Grafo">Grafo</option>
-								<option value="Geometria Comp.">Geometria Comp.</option>
-							   </select><br><br>
-			Descrição:<input type="text" name="description" size="50" placeholder="Máximo 40 caracteres"/><br><br>
-			Tipo:<input type="text" name="type" size="50"/>
-			<!--<select id="cars" name="type">
-					<option value="E/S">E/S</option>
-					<option value="Repetição">Repetição</option>
-					<option value="Vetores e matrizes">Vetores e matrizes</option>
-				 </select>
-				 --><br><br>
-			Dificuldade E2PC: <input type="number" id="quantity" name="level2pc" min="01" max="10"><br><br>
-			Dificuldade: <input type="number" id="quantity" name="level" min="01" max="10"><br><br>
-			Código: <textarea type="text" name="source" rows="10" cols="52"> </textarea><br><br>
-			<input type="submit" value="Enviar" />
+				
+				Classificação:  <select name="class">
+									<option value="Iniciante">Iniciante</option>
+									<option value="AD-HOC">AD-HOC</option>
+									<option value="String">String</option>
+									<option value="AEd">AEd</option>
+									<option value="Matemática">Matemática</option>
+									<option value="Paradigma">Paradigma</option>
+									<option value="Grafo">Grafo</option>
+									<option value="Geometria Comp.">Geometria Comp.</option>
+								</select><br><br>
+								   
+				Descrição:<input type="text" name="description" size="50"/><br><br>
+				Tipo:<input type="text" name="type" size="50"/>
+					<!--<select id="cars" name="type">
+						<option value="E/S">E/S</option>
+						<option value="Repetição">Repetição</option>
+						<option value="Vetores e matrizes">Vetores e matrizes</option>
+					 </select>
+					 --><br><br>
+				Dificuldade E2PC: <input type="number" id="quantity" name="level2pc" min="01" max="10"><br><br>
+				
+				Dificuldade: <input type="number" id="quantity" name="level" min="01" max="10"><br><br>
+				
+				Observação: <input type="text" name="Observation" size="50"/><br><br>
+				
+				Código: <textarea type="text" name="source" rows="10" cols="52"> </textarea><br><br>
+				<input type="submit" value="Enviar" />
 			</td>
 		</tr>
 		</table>

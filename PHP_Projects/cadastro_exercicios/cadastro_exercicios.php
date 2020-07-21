@@ -18,6 +18,7 @@
 	$type=$_POST ['type'];
 	$level2pc=$_POST ['level2pc'];
 	$level=$_POST ['level'];
+	$Observation=$_POST ['Observation'];
 	$source=$_POST ['source'];
 	
 	echo"Valor de Código a ser guardado: ";
@@ -26,9 +27,9 @@
 		
 	
 	Require ('conexao.php');
-	$sqlinsert ="insert into exercicio values ('$id','$name','$class','$description','$type','$level2pc','$level','0','$source')";
+	$sqlinsert ="insert into exercicio values ('$id','$name','$class','$description','$type','$level2pc','$level','0','$Observation','$source')";
 	
-	mysqli_query($db, $sqlinsert) or die ('NÃO FOI POSSIVEL INSERIR :(');
+	mysqli_query($db, $sqlinsert) or die ('ERRO!');
 	echo "<script> alert ('cadastro realizado com sucesso :)')</script>"; 
 	
 ?>

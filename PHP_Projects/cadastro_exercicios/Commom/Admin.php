@@ -56,48 +56,43 @@
 	<ul>
 		<li style="float:left"><a>Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
 		<li style="float:right"><a href="logout.php">Sair</a></li>
+		<li style="float:right"><a href="Cex.php">Inserir Novo</a></li>	
 	</ul>
 	
 	<div class="dropdown">
-        <a href="" data-toggle="modal" data-target="#exampleModalLong">Mostrar Código</a>
-        <table border="0" style="text-align:center;">
+        <h2 align ="left">Seleção de Problemas do URI Online Judge!</h2><br>
+        <table border="0" style="text-align:left;">
             <tr>
-                <th width="100"  style="text-align:center;">ID</th>
-                <th width="150"  style="text-align:center;">Nome</th>
-				<th width="100"  style="text-align:center;">
-					<a onclick="classificacao()" class="dropbtn">Classificação</a>
+                <th width="50"  style="text-align:left;">ID</th>
+                <th width="250"  style="text-align:left;">Nome</th>
+				<th width="150"  style="text-align:left;">
+					<a onclick="classificacao()" class="dropbtn">Categoria</a>
 						<div id="classificacao" class="dropdown-content">
-							<a href="painel.php?ordem=class&campo=data">Ordenar por classificação</a>
+							<a href="Admin.php?ordem=class&campo=data">Ordenar por Categoria</a>
 						</div>
 				</th>
-                <th width="400"  style="text-align:center;">Descrição</th>
-				<th width="100"  style="text-align:center;">
-					<a onclick="tipo()" class="dropbtn">Tipo</a>
+				<th width="75"  style="text-align:left;">
+					<a onclick="dificuldade()" class="dropbtn">Nivel</a>
+						<div id="dificuldade" class="dropdown-content">
+							<a href="Admin.php?ordem=dificuldade1&campo=data">Crescente</a>
+							<a href="Admin.php?ordem=dificuldade2&campo=data">Decrescente</a>
+						</div>
+				</th>
+                <th width="405"  style="text-align:left;">Descrição</th>
+				<th width="100"  style="text-align:left;">
+					<a onclick="tipo()" class="dropbtn">Classificação</a>
 						<div id="tipo" class="dropdown-content">
-							<a href="painel.php?ordem=tipo1&campo=data">Ordenar Por tipo</a>
+							<a href="Admin.php?ordem=tipo1&campo=data">Ordenar Por tipo</a>
 						</div>
 				</th>			 					
-				<th width="150"  style="text-align:center;">
-					<a onclick="dificuldadee2pc()" class="dropbtn">Dificuldade e2pc</a>
+				<th width="150"  style="text-align:left;">
+					<a onclick="dificuldadee2pc()" class="dropbtn">Dificuldade</a>
 						<div id="dificuldadee2pc" class="dropdown-content">
-							<a href="painel.php?ordem=dificuldadee2pc1&campo=data">Crescente</a>
-							<a href="painel.php?ordem=dificuldadee2pc2&campo=data">Decrescente</a>
+							<a href="Admin.php?ordem=dificuldadee2pc1&campo=data">Crescente</a>
+							<a href="Admin.php?ordem=dificuldadee2pc2&campo=data">Decrescente</a>
 						</div>
-				</th>
-				<th width="200"  style="text-align:center;">
-					<a onclick="dificuldade()" class="dropbtn">Dificuldade</a>
-						<div id="dificuldade" class="dropdown-content">
-							<a href="painel.php?ordem=dificuldade1&campo=data">Crescente</a>
-							<a href="painel.php?ordem=dificuldade2&campo=data">Decrescente</a>
-						</div>
-				</th>
-				<th width="100"  style="text-align:center;">
-					<a onclick="status()" class="dropbtn">Status</a>
-						<div id="status" class="dropdown-content">
-							<a href="painel.php?ordem=status1&campo=data">Realizadas</a>
-							<a href="painel.php?ordem=status2&campo=data">Não Realizadas</a>
-						</div>
-				</th>
+				</th>	
+				<th width="100"  style="text-align:left;">Código</th>
             </tr>
 			<script> // Função para fazer o  dropdown
 				function classificacao() {
@@ -149,11 +144,7 @@
 				else if($_GET['ordem'] == "dificuldade1")//Dificuldade 
 					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level asc");
 				else if($_GET['ordem'] == "dificuldade2")
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level desc");					
-				else if($_GET['ordem'] == "status1")//Status
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status desc");
-				else if($_GET['ordem'] == "status2")
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY status asc");					
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level desc");								
 				else//Padrão
 					$result = mysqli_query($db, "SELECT * FROM exercicio");
 				//Fim da ordenação
@@ -169,11 +160,38 @@
 							<td>" .$row['id'] ."</td>
 							<td>" ."<a href=https://www.urionlinejudge.com.br/judge/pt/problems/view/".$row['id'] ."''>".$row['name'] ."</a></td>
 							<td>" .$row['class'] ."</td>
+							<td>" .$row['level'] ."</td>
 							<td>" .$row['description'] ."</td>
 							<td>" .$row['type'] ."</td>
-							<td>" .$row['level2pc'] ."</td>
-							<td>" .$row['level'] ."</td>
-							<td>" .$row['status'] ."</td>";
+							<td>" .$row['level2pc'] ."</td>							
+							<td>"?>
+								<a href="" data-toggle="modal" data-target="#exampleModalLong">Mostrar</a>
+									<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+										<div class="modal-content">
+										  <div class="modal-header">
+											<h5 class="modal-title">
+												<?php
+													echo"Código do exercício: " .$row['id'] ."";
+												?>											
+											</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										  </div>
+										  <div class="modal-body">
+											<?php
+												echo"" .$row['source'] ."";
+											?>
+										  </div>
+										  <div class="modal-footer">
+											<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+										  </div>
+										</div>
+									  </div>
+									</div>
+								<?php
+							"</td>";
 					$linha++;
 				}
 				mysqli_free_result($result);

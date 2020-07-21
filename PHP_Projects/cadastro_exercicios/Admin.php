@@ -161,7 +161,38 @@
 							<td>" ."<a href=https://www.urionlinejudge.com.br/judge/pt/problems/view/".$row['id'] ."''>".$row['name'] ."</a></td>
 							<td>" .$row['class'] ."</td>
 							<td>" .$row['level'] ."</td>
-							<td>" .$row['description'] ."</td>
+							<td>"?>
+								<a href="" data-toggle="modal" data-target="#exampleModalLong">Mostrar Descrição</a>
+									<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+										<div class="modal-content">
+										  <div class="modal-header">
+											<h5 class="modal-title">
+												<?php
+													echo"Descrição Do exercicio: " .$row['id'] ."";
+												?>											
+											</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										  </div>
+										  <div class="modal-body">
+											<?php
+												echo"" .$row['description'] ."";
+												echo"\nObservação:\n";
+												echo"" .$row['Observation'] ."";
+												
+												
+											?>
+										  </div>
+										  <div class="modal-footer">
+											<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+										  </div>
+										</div>
+									  </div>
+									</div>
+								<?php
+							"</td>
 							<td>" .$row['type'] ."</td>
 							<td>" .$row['level2pc'] ."</td>							
 							<td>"?>
