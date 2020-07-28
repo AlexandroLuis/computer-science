@@ -33,6 +33,4 @@ L0$pb:
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:                                 ## @.str
 	.asciz	"I like the number %d.\n"
-
-
 .subsections_via_symbols
