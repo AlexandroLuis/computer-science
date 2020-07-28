@@ -6,7 +6,7 @@ C Study for Computer Science Graduation =)
 -Function                          <br>
 -Int, Void, Recursive                    
 -Dynamic Location                  <br>
--Sort, Binary Search               <br>  
--Struct                            
--Stack, List, Queue                <br>    
+-Sort, Binary Search                 
+-Struct                            <br>
+-Stack, List, Queue                    
 -Assembly                          <br>
