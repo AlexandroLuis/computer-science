@@ -1,12 +1,12 @@
 C Study for Computer Science Graduation =)
 
--Data Types
--Loop
--Array, Matrix
--Function
-  -Int, Void, Recursive
--Dynamic Location
--Sort, Binary Search
--Struct
--Stack, List, Queue
--Assembly
+-Data Types                        <br>
+-Loop                              <br>
+-Array, Matrix                     <br>
+-Function                          <br>
+  -Int, Void, Recursive            <br>      
+-Dynamic Location                  <br>
+-Sort, Binary Search               <br>  
+-Struct                            <br>
+-Stack, List, Queue                <br>    
+-Assembly                          <br>
