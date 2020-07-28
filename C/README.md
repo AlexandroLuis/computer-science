@@ -8,5 +8,5 @@ C Study for Computer Science Graduation =)
 -Dynamic Location                  <br>
 -Sort, Binary Search                 
 -Struct                            <br>
--Stack, List, Queue                    
+-Stack, List, Queue, Tree                    
 -Assembly                          <br>
