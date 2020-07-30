@@ -1,4 +1,4 @@
-public class Aluno implements Falante{
+public class Aluno extends Pessoa implements Falante{
 	public void falar(){
 		System.out.println("Olá!");
 	}
