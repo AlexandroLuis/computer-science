@@ -1,4 +1,4 @@
-public class Entrevistador {
+public class Entrevistador{
 	String idioma;
 	public void entrevista(Falante f){
     	if(f instanceof Aluno){
@@ -9,8 +9,8 @@ public class Entrevistador {
     		Robo r = (Robo) f;
     		r.reboot();
     	}
-    	//idioma = f.seuidioma();
     	f.falar();
-    	System.out.println("Vou entrevistar você em " + idioma);
+    	System.out.print("Vou entrevistar você em ");
+    	f.seuidioma();
 	}
 }
