@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[]){
+    int *p = 0xff1d;
 
-  printf("I like the number %d.\n", 4 * 6);
-
-  return 0xf00d;
+    printf("%d", &p);
+    return 0xf00d;
 }
