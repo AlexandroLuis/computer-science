@@ -3,7 +3,19 @@ public interface Falante{
 	public void seuidioma();	
 }
 
-public class Aluno implements Falante{
+public class Pessoa{
+	public String nome;
+	public int idade;
+	
+	public int getnome(String nome){
+		return nome;
+	}
+	public int getidade(int idade){
+		return idade;
+	}
+}
+
+public class Aluno extends Pessoa implements Falante{
 	public void falar(){
 		System.out.println("Olá!");
 	}
@@ -20,15 +32,14 @@ public class Robo implements Falante{
 		System.out.println("Dominar a terra!");
 	}
 	public void seuidioma(){
-		System.ou.println("Navajo");
+		System.out.println("Navajo");
 	}
 	public void reboot(){
 		System.out.println("Reiniciando...");
 	}
 }
 
-public class Entrevistador {
-	String idioma;
+public class Entrevistador{
 	public void entrevista(Falante f){
     	if(f instanceof Aluno){
     		System.out.println("Olá, Aluno!");
@@ -38,9 +49,9 @@ public class Entrevistador {
     		Robo r = (Robo) f;
     		r.reboot();
     	}
-    	//idioma = f.seuidioma();
     	f.falar();
-    	System.out.println("Vou entrevistar você em " + idioma);
+    	System.out.print("Vou entrevistar você em ");
+    	f.seuidioma();
 	}
 }
 
