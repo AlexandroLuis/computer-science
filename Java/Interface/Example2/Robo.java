@@ -3,7 +3,7 @@ public class Robo implements Falante{
 		System.out.println("Dominar a terra!");
 	}
 	public void seuidioma(){
-		System.ou.println("Navajo");
+		System.out.println("Navajo");
 	}
 	public void reboot(){
 		System.out.println("Reiniciando...");
