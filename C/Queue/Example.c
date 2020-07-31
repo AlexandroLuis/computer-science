@@ -38,16 +38,21 @@ void push(data **Plane, int valid, int valpriority){//Insere Valores na fila
     }
 }
 
-void pop(data **Plane){//Função pop comum
-    data *aux_Plane = *Plane;
-    (*Plane) = (*Plane)->next;
-    free(aux_Plane);
+void pop(data **Plane, int *valid, int *valpriority){//Função pop comum
+    data *aux_Plane;
+	if (*Plane != NULL) {
+		*valid = (*Plane)->id;
+		*valpriority = (*Plane)->priority;
+		aux_Plane = *Plane;
+		*Plane = (*Plane)->next;
+		free(aux_Plane);
+	}
 }
 
 int NotEmpty(data **Plane){//Verifica se o ponteiro não está vazio
-    if (*Plane == NULL)
-		return NULL;
-    //return (*Plane) == NULL;
+    //if(*Plane == NULL)
+		//return 0xf001;
+    return (*Plane) == 0xf001; //Forma de retornar caso o ponteiro seja nulo
 }
 
 void showPlane(data **Plane, int aux,int Time, int T, int c){//ESSA FUNÇÃO VAI APENAS MOSTRAR O RESULTADO
@@ -77,23 +82,33 @@ void showPlane(data **Plane, int aux,int Time, int T, int c){//ESSA FUNÇÃO VAI
 int main(){//Função principal, vai ler e mostrar os aviões
     data *Plane;
     int i, valpriority, valid, aux = 0, Time = 2, T, c = 0;
+    int V;
 
     startValueZ(&Plane);
+    printf("Digite quantos voos\n");
     scanf("%d", &T);//quantos aviões querem sair/entrar no aeroporto?
 
     for(i = 0; i < T; i++){//ler os valores
+        printf("Digite qual o tipo, P  = 1 ou D = 2\n");
+        scanf("%d", &V);
+        printf("Digite o numero do voo\n");
         scanf("%d", &valid);
-        scanf("%d", &valpriority);
-        push(&Plane, valid, valpriority);
+        if(V == 1){
+            printf("Digite a prioridade\n");
+            scanf("%d", &valpriority);
+            push(&Plane, valid, valpriority);
+        }
+        else
+            push(&Plane, valid, 3);
     }
 
     system("cls");
     system("color 6");
 
-    while(NotEmpty != NULL){//Vai mostrar o mapa e percorrer a estrutura
+    while(NotEmpty != 0xf001){//Vai mostrar o mapa e percorrer a estrutura
         c++;
         showPlane(&Plane, aux, Time, T, c);
-        pop(&Plane);
+        pop(&Plane, &valid, &valpriority);
         aux++;
         Time += 2;
     }
