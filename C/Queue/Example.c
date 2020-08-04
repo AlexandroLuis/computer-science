@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <stdbool.h>
+#include <locale.h>
+#include <time.h>
 
 typedef struct DataPlane{ //Estrutura da fila
     int id; //id do avião
@@ -41,8 +44,8 @@ void push(data **Plane, int valid, int valpriority, char valspec){//Insere Valor
 }
 
 void pop(data **Plane, int *valid, int *valpriority, int *valspec){//Função pop comum
-    data *aux_Plane;
-	if (*Plane != NULL) {
+    data *aux_Plane; // aloca um ponteiro auxiliar
+	if(*Plane != NULL) { //verifica se o ponteiro da estrutura não é vazio
 		*valid = (*Plane)->id;
 		*valpriority = (*Plane)->priority;
 		*valspec = (*Plane)->Spec;
@@ -52,96 +55,132 @@ void pop(data **Plane, int *valid, int *valpriority, int *valspec){//Função po
 	}
 }
 
-int Count(data **Plane){//Verifica se o ponteiro não está vazio
-    //if(*Plane == NULL)
-		//return 0xf001;
-    return (*Plane) == NULL; //Forma de retornar caso o ponteiro seja nulo
-}
-
 int showPlane(data **Plane){//ESSA FUNÇÃO VAI APENAS MOSTRAR O RESULTADO
-    return (*Plane)->id;
+    return (*Plane)->id; // retorna o numero do avião
 }
 
 void showPlaneQueue(data **Plane){
     data *P = *Plane;
-
+//Função que mostra os aviões em sequencia, mostrando suas especificações
     if(P != NULL){
-        printf("Aviaos em espera : ");
+        printf("Aviões em espera : ");
         while (P != NULL) {
-            printf("%d - %c, ",P->id, P->Spec);
+            printf("\n\t|Número do Avião: %d, Tipo do Voo: %c, Prioridade: %d|",P->id, P->Spec, P->priority);
             P = P->next;
         }
     }
-    else if(P == NULL)
-         printf("Sem aviaos em espera!\n");
+    else//caso seja falso
+         printf("Sem Aviões em espera!\n");
     printf("\n");
 }
 
-int main(){//Função principal, vai ler e mostrar os aviões
-    data *Plane, *Result;
-    int i, aux = 0, Time = 2, T, c = 0;
-    int valpriority, valid, L;
+void pushNormal(data **Plane, int valid, int valpriority, int L){
+    data *P, *N;
+    N = (data *) malloc (sizeof(data));
+    N->id = valid;
+    N->priority = valpriority;
+    N->Spec = L;
+    N->next = NULL;
+    if(*Plane == NULL)
+            *Plane = N;
+     else {
+        P = *Plane;
+        while(P->next != NULL)
+            P = P->next;
+        P->next = N;
+    }
+}
 
-    startValueZ(&Plane);
+int main(){//Função principal, vai ler e mostrar os aviões
+    data *Plane, *Result; //ponteiros
+    const int Const = 70, hour = 17;
+    int i, ut = 10, T;
+    int valpriority, valid, L;
+    bool continua = true;
+    char ler;
+
+    setlocale(LC_ALL, "Portuguese");
+    startValueZ(&Plane);//inicia os ponteiros com nulo
     startValueZ(&Result);
     system("color 3");
 
-    printf("Digite quantos voos\n");
+    printf("Digite quantos a quantidade de voos: ");
     scanf("%d", &T);//quantos aviões querem sair/entrar no aeroporto?
-
+/*
     for(i = 0; i < T; i++){//ler os valores
-        printf("Digite qual o tipo, P  = 1 ou D = 2\n");
-        scanf("%d", &L);
-        printf("Digite o numero do voo\n");
+        fflush(stdin);
+        printf("\nDigite qual o tipo do voo: ");
+        scanf("%c", &ler);
+        printf("\nDigite o numero do voo: ");
         scanf("%d", &valid);
-        if(L == 1){
-            printf("Digite a prioridade\n");
+        if(ler == 80 || ler == 2){//Força a inclusao do tipo do voo
+            printf("\nDigite a prioridade: ");
             scanf("%d", &valpriority);
             push(&Plane, valid, valpriority, 'P');
         }
         else
             push(&Plane, valid, 3, 'D');
     }
+*/
+    for(i = 0; i < 20; i++){
+        valid = rand() % 700;
+        valpriority = rand() % 4;
+        ler = rand() % 26;
+        if(ler > 17){
+            if(valpriority > 1)
+                push(&Plane, valid, 2, 'P');
+            else
+                push(&Plane, valid, 1, 'P');
+        }
+        else
+             push(&Plane, valid, 3, 'D');
+    }
+
 
     system("cls");
     system("color 6");
 
-    printf("Lista de Aviaos na Fila!\n");
+    printf("Lista de Aviões na Fila!\n");//mostra os aviões que estão no ponteiro 1
     showPlaneQueue(&Plane);
 
-    do{//Vai mostrar o mapa e percorrer a estrutura
-        for(i = 0; i < 3; i++){
-            if(Count != NULL && i < T){
+    while(continua) {//enquanto continua tem o valor true
+        printf("\n");
+        for(i = 0; i < Const; i++)//mostra informações do mapa
+            printf("-");
+        printf("\nHorário %d:%d",hour, ut+1);
+        for(i = 0; i < 3; i++) {//faz a alocação dos 3 novos aviões na fila 2
+            if(Plane != NULL) {
                 pop(&Plane, &valid, &valpriority, &L);
-                push(&Result, valid, valpriority, L);
+                pushNormal(&Result, valid, valpriority, L);
             }
         }
-        c++;
-        if(aux % 2 == 0){//só faz o risco se for par
-            for(i = 0; i < 30; i++)
-                printf("-");
-            printf("\n");
-            showPlaneQueue(&Result);
-            aux = 0;
+        printf("\n");
+        showPlaneQueue(&Result);
+        if((ut % 2 == 0) && (continua)){//mostra os avioes que estão utilizando a pista e seu tempo
+            if(Result != NULL)
+                printf("\nAviões utilizando a pista no momento:");
+            for(i = 0; i <= 1; i++){
+                if(Result != NULL){
+                    pop(&Result, &valid, &valpriority, &L);
+                    if(L == 'P')
+                        printf("\n\t|Avião %d pousando na pista %d|", valid, i);
+                    else
+                        printf("\n\t|Avião %d decolando na pista %d|", valid, i);
+                }
+                else{
+                    printf("\n");
+                    for(i = 0; i < Const; i++)
+                        printf("-");
+                    printf("\nHorário %d:%d",hour, ut+1);
+                    printf("\n\nTodos os pousos e decolagens realizados!\n\n");
+                    continua = false;
+                    break;
+                }
+            }
         }
         else
-            aux = 1;// aux é a posta de pouso/decolagem
-            printf("Aviao %d na pista %d\n", showPlane(&Result), aux);
-                if(aux == 1)
-                    printf("Tempo gasto %d\n", Time);//Tempo gasto
-            if(T == c && T % 2 != 0){//Fechar função caso seja impar
-                printf("Tempo gasto %d\n", Time);
-                for(i = 0; i < 30; i++)
-                    printf("-");
-            }
-            else if(T == c){
-                for(i = 0; i < 30; i++)
-                    printf("-");
-            }
-
-        for(i = 0; i < 2; i++)
-            pop(&Result, &valid, &valpriority, &L);
-        aux++;
-        Time += 2;
-    }while(Time < (T*2+1));
+            printf("\nExistem Aviões utilizando as pistas no momento : 17:%d\n", ut+1);
+    ut++;
+    }
+    return 0x29A;
 }
