@@ -27,7 +27,7 @@
     <h2 align ="left">Código do Exercicio <?php  $id=$_GET['id']; echo"$id"; ?>!</h2><br>
 
 	<!-- Recebe Um id Por Parametro e Mostra o resultado do código -->
-	<table border="0" width="500">
+	<table border="0">
 		<tr>
 			<td width="100">
 			</td>
