@@ -28,20 +28,25 @@
 
 	<!-- Recebe Um id Por Parametro e Mostra o resultado do código -->
 	<table border="0" width="500">
-	<?php
-		$id=$_GET['id'];
-		require('conexao.php');
-		
-		$result = mysqli_query($db, "SELECT * FROM exercicio where id=$id");
-		$linha =1;
-		
-		$row = mysqli_fetch_assoc($result);
-		echo"<tr>
-				<td>" .$row['source'] ."</td>
-			 </tr>";
+		<tr>
+			<td width="100">
+			</td>
+			<td>
+				<?php
+					$id=$_GET['id'];
+					require('conexao.php');
+					
+					$result = mysqli_query($db, "SELECT * FROM exercicio where id=$id");
+					
+					$row = mysqli_fetch_assoc($result);
+					$texto = $row['source'];
+					echo str_replace("<br \>","<br>\\r",nl2br($texto));
 
-		mysqli_free_result($result);
-	?>
+					mysqli_free_result($result);
+				?>
+			</td>
+		</tr>
 	</table>
+	<br><br><br>
 </body>
 </html>
