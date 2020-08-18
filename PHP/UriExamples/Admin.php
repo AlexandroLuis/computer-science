@@ -3,6 +3,9 @@
 	Versão 1.0 - 2020
 -->
 <?php
+	ini_set('display_errors', 0 );
+	error_reporting(0);
+
 	include('verifica_login.php');
 ?>
 <html>
@@ -10,9 +13,8 @@
 		<title>Uriexamples</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="Style/style.css">
+		<link rel="shortcut icon" href="Images/favicon.ico" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	</head>
 <body>
 	<ul><!-- Menu Inicial -->
@@ -88,11 +90,6 @@
 				  }
 				}
 			</script><!-- Fim da Função dropdown -->
-
-			<?php
-				ini_set('display_errors', 0 );
-				error_reporting(0);
-			?>
 			<?php
 				require('conexao.php');
 				

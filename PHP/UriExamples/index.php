@@ -9,6 +9,7 @@
 <head>
     <meta charset="utf-8">
     <title>Página Inicial- Exercicios URI</title>
+	<link rel="shortcut icon" href="Images/favicon.ico" />
 </head>
  
 <body>
