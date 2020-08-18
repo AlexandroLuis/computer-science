@@ -111,21 +111,25 @@
 		require('conexao.php');
 		
 		$result = mysqli_query($db, "SELECT * FROM exercicio where id=$id");
-		$linha =1;
+		$row = mysqli_fetch_assoc($result);
 	?>
 	
 	<form class="form-style-8" action="editar_exercicio.php" method="POST" />
 		<div style="float:center">
-			<input type="text" class="w3-input" name="id" size="50" placeholder="ID:"/><br><br>	
-			<input type="text" class="w3-input" name="name" size="50" placeholder="Nome:"/><br><br>
-			<input type="text" class="w3-input" name="description" size="50" placeholder="Descrição:"/><br><br>
+			<h5 style="float:left">Id:</h5>
+			<input type="text" class="w3-input" name="id" size="50" value="<?php echo $row['id']?>"/><br><br>	
+			<h5 style="float:left">Nome:</h5>
+			<input type="text" class="w3-input" name="name" size="50" value="<?php echo $row['name']?>"/><br><br>
+			<h5 style="float:left">Descrição:</h5>
+			<input type="text" class="w3-input" name="description" size="50" value="<?php echo $row['description']?>"/><br><br>
 			<h5 style="float:left">Dificuldade E2PC:</h5>
-			<input type="number" class="w3-input" id="quantity" name="level2pc" min="01" max="10">
+			<input type="number" class="w3-input" id="quantity" name="level2pc" min="01" max="10" value="<?php echo $row['level2pc']?>"><br>
 			<h5 style="float:left">Dificuldade:</h5>
-			<input type="number" class="w3-input" id="quantity" name="level" min="01" max="10"><br><br>
-			<input type="text" class="w3-input" name="Observation" size="50" placeholder="Observação:"/> <br><br>
+			<input type="number" class="w3-input" id="quantity" name="level" min="01" max="10" value="<?php echo $row['level']?>"><br><br>
+			<h5 style="float:left">Observação:</h5>
+			<input type="text" class="w3-input" name="Observation" size="50" value="<?php echo $row['Observation']?>"/> <br><br>
 			<h5 style="float:left">Código:</h5>
-			<br><textarea type="text" name="source" rows="10" cols="52"></textarea> 
+			<br><textarea type="text" name="source" rows="10" cols="52" value="<?php echo $row['source']?>"></textarea> 
 			<input type="submit" style="float:center" value="Editar"/>
 		</div>
 	</form>
