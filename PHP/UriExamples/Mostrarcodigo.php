@@ -10,7 +10,7 @@
 ?>
 <html>
 	<head>
-		<title>Uriexamples</title>
+		<title>Código do exercicio</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="Style/style.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">

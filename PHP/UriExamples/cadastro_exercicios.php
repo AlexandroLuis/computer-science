@@ -1,6 +1,11 @@
+<!--  
+	Desenvolvido por https://github.com/Alexandro-845
+	Versão 1.0 - 2020
+-->
 <html>
 	<head>	
-		<meta http-equiv="refresh" content="2; url=Admin.php">
+		<title>Cadastro de Exercicios</title>
+		<meta http-equiv="refresh" content="2; url=Cex.php">
 		<meta charset=".utf-8">
 		<script type="text/javascript"></script>
 	</head>
@@ -31,7 +36,6 @@
 	
 	mysqli_query($db, $sqlinsert) or die ('ERRO!');
 	echo "<script> alert ('cadastro realizado com sucesso :)')</script>"; 
-	
 ?>
 
 </body>

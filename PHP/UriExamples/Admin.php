@@ -16,7 +16,7 @@
 	</head>
 <body>
 	<ul><!-- Menu Inicial -->
-		<li style="float:left"><a>Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
+		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
 		<li style="float:right"><a href="logout.php">Sair</a></li>
 		<li style="float:right"><a href="Cex.php">Inserir Novo</a></li>	
 	</ul><!-- Fim Menu Inicial -->
@@ -123,7 +123,7 @@
 					echo "<tr>
 							<td></td>
 							<td>" ."<a href=editarproblema.php?id=".$row['id'] .">".$row['id'] ."</a></td>
-							<td>" ."<a href=https://www.urionlinejudge.com.br/judge/pt/problems/view/".$row['id'] ."''>".$row['name'] ."</a></td>
+							<td>" ."<a href=https://www.urionlinejudge.com.br/judge/pt/problems/view/".$row['id'] .">".$row['name'] ."</a></td>
 							<td>" .$row['class'] ."</td>
 							<td>" .$row['level'] ."</td>
 							<td>" .$row['description'] ."</td>
