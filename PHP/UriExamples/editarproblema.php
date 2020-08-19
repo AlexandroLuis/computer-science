@@ -9,10 +9,10 @@
 	include('verifica_login.php');
 	
 	$id=$_GET['id'];
-		require('conexao.php');
+	require('conexao.php');
 		
-		$result = mysqli_query($db, "SELECT * FROM exercicio where id=$id");
-		$row = mysqli_fetch_assoc($result);
+	$result = mysqli_query($db, "SELECT * FROM exercicio where id=$id");
+	$row = mysqli_fetch_assoc($result);
 ?>
 <html>
 	<head>
@@ -30,8 +30,11 @@
 	</ul><!-- Fim Menu Inicial -->
 
     <h2 align ="center">Editar Informações do Exercício <?php  $id=$_GET['id']; echo"$id"; ?>!</h2>
-	<form class="form-style-8" action="editar_exercicio.php" method="POST" />
+	<form class="form-style-8" action="editar_exercicio.php" method="GET" />
 		<div style="float:center">
+			<input name="class" type="hidden" value ="<?php echo $row['class']?>"<br>
+			<input name="type" type="hidden" value ="<?php echo $row['type']?>"<br>
+			<input name="status" type="hidden" value ="<?php echo $row['status']?>"<br>
 			<h5 style="float:left">Id:</h5>
 			<input type="text" class="w3-input" name="id" size="50" value="<?php echo $row['id']?>"/><br><br>	
 			<h5 style="float:left">Nome:</h5>
