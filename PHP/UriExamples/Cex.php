@@ -6,14 +6,16 @@
 	ini_set('display_errors', 0 );
 	error_reporting(0);
 	
-	include('verifica_login.php');
+	//include('verifica_login.php');
 ?>
 <html>
 	<head>
 		<title>Cadastrar Exercicios</title>
 		<meta charset="utf-8">
 		<link rel="shortcut icon" href="Images/favicon.ico" />
+		<script src="https://apis.google.com/js/platform.js" async defer></script> 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<meta name="google-signin-client_id" content="384602407862-g2t95qbtuto07r923qlic2317dbrkboa.apps.googleusercontent.com">
 		<link rel="stylesheet" href="Style/style.css">
 	</head>
 <body align="center">
@@ -27,22 +29,17 @@
 	
 	<form class="form-style-8" action="cadastro_exercicios.php" method="POST" />
 		<div style="float:center">
-			<input type="text" class="w3-input" name="id" size="50" placeholder="ID:"/><br><br>	
-			<input type="text" class="w3-input" name="name" size="50" placeholder="Nome:"/><br><br>
-			<input type="text" class="w3-input" name="description" size="50" placeholder="Descrição:"/><br><br>
-			<input type="text" class="w3-input" name="Observation" size="50" placeholder="Observação:"/> <br>	
+			<input type="text" class="w3-input" name="id" size="50" placeholder="ID:"/><br>
+			<input type="text" class="w3-input" name="name" size="50" placeholder="Nome:"/><br>
+			<input type="text" class="w3-input" name="description" size="50" placeholder="Descrição:"/><br>
+			<input type="text" class="w3-input" name="Observation" size="50" placeholder="Observação:"/> <br>
+			<input type="text" class="w3-input" name="type" size="50" placeholder="Tipo(s):"/> <br><br>
 			<div class="id1">
-				<br>
-				<h5 style="float:left">Selecione o Tipo:</h5><br><br>
-				<input type="checkbox" style="float:left" value="Entrada & Saida.">Entrada & Saida.</option><br>
-				<input type="checkbox" style="float:left" value="Laço de Repetição.">Laço de Repetição.</option><br>
-				<input type="checkbox" style="float:left" value="Vetores e matrizes.">Vetores e matrizes.</option><br><br><br>
 				<h5 style="float:left">Selecione a Classificação:</h5><br><br><br>
-				<h5 style="float:left">Dificuldade E2PC:</h5><br><br>
+				<h5 style="float:left">Dificuldade E2PC:</h5><br><br><br>
 				<h5 style="float:left">Dificuldade:</h5>			
 			</div>
 			<div class="id2">
-				<br><br><br><br><br><br><br>
 				<select name="class">
 					<option value="Nível Iniciante.">Nível Iniciante.</option>
 					<option value="D-HOC Program.">AD-HOC Program.</option>
@@ -56,7 +53,6 @@
 				<input type="number" class="w3-input" id="quantity" name="level2pc" min="01" max="10" placeholder="01">
 				<input type="number" class="w3-input" id="quantity" name="level" min="01" max="10" placeholder="01">				
 			</div>
-			<br><br>
 			<h5 style="float:left">Código:</h5>
 			<br><textarea type="text" name="source" rows="10" cols="52" ></textarea> 
 			<input type="submit" value="Enviar" />

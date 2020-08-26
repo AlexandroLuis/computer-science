@@ -6,7 +6,7 @@
 	ini_set('display_errors', 0 );
 	error_reporting(0);
 
-	include('verifica_login.php');
+	//include('verifica_login.php');
 ?>
 <html>
 	<head>
@@ -14,14 +14,26 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="Style/style.css">
 		<link rel="shortcut icon" href="Images/favicon.ico" />
+		<script src="https://apis.google.com/js/platform.js" async defer></script> 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<meta name="google-signin-client_id" content="384602407862-g2t95qbtuto07r923qlic2317dbrkboa.apps.googleusercontent.com">
 	</head>
 <body>
 	<ul><!-- Menu Inicial -->
 		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
-		<li style="float:right"><a href="logout.php">Sair</a></li>
+		<li style="float:right"><a id="myLink" title="Click to do something" href="" onclick="signOut();return false;">Sair</a></li>
 		<li style="float:right"><a href="Cex.php">Inserir Novo</a></li>	
 	</ul><!-- Fim Menu Inicial -->
+	
+	<script>
+		function signOut(){
+		var auth2 = gapi.auth2.getAuthInstance();
+		
+		auth2.signOut().then(function(){
+		  console.log('Logout Com Sucesso!');
+		});
+		  }
+	</script>
 	
 	<div class="tab-container"><!-- Lista De Problemas -->
         <h2 align ="left">Seleção de Problemas do URI Online Judge!</h2><br>
@@ -29,32 +41,32 @@
             <tr>
 				<th width="10"></th>
                 <th width="75">ID</th>
-                <th width="230">Nome</th>
+                <th width="230">Nome</th>				
 				<th width="150">
 					<a onclick="classificacao()" class="dropbtn">Categoria</a>
 						<div id="classificacao" class="dropdown-content">
-							<a href="Admin.php?ordem=class&campo=data">Ordenar por Categoria</a>
+							<a href="Admin.php?ordem=class">Ordenar por Categoria</a>
 						</div>
 				</th>
 				<th width="75">
 					<a onclick="dificuldade()" class="dropbtn">Nivel</a>
 						<div id="dificuldade" class="dropdown-content">
-							<a href="Admin.php?ordem=dificuldade1&campo=data">Crescente</a>
-							<a href="Admin.php?ordem=dificuldade2&campo=data">Decrescente</a>
+							<a href="Admin.php?ordem=level&value=asc">Crescente</a>
+							<a href="Admin.php?ordem=level&value=desc">Decrescente</a>
 						</div>
 				</th>
                 <th width="415">Descrição</th>
 				<th width="160">
 					<a onclick="tipo()" class="dropbtn">Classificação</a>
 						<div id="tipo" class="dropdown-content">
-							<a href="Admin.php?ordem=tipo1&campo=data">Ordenar Por tipo</a>
+							<a href="Admin.php?ordem=type">Ordenar Por tipo</a>
 						</div>
 				</th>			 					
 				<th width="120" >
 					<a onclick="dificuldadee2pc()" class="dropbtn">Dificuldade</a>
 						<div id="dificuldadee2pc" class="dropdown-content">
-							<a href="Admin.php?ordem=dificuldadee2pc1&campo=data">Crescente</a>
-							<a href="Admin.php?ordem=dificuldadee2pc2&campo=data">Decrescente</a>
+							<a href="Admin.php?ordem=level2pc&value=asc">Crescente</a>
+							<a href="Admin.php?ordem=level2pc&value=desc">Decrescente</a>
 						</div>
 				</th>	
 				<th width="100">Código</th>
@@ -92,29 +104,15 @@
 			</script><!-- Fim da Função dropdown -->
 			<?php
 				require('conexao.php');
-				
-				// Formas para ordenar o banco de dados!	
-				if($_GET['ordem'] == "class")//Classificação
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY class desc");					
-				else if($_GET['ordem'] == "tipo1")//Tipo
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY type desc");					
-				else if($_GET['ordem'] == "dificuldadee2pc1")//Dificuldade E2PC
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level2pc asc");
-				else if($_GET['ordem'] == "dificuldadee2pc2") 
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level2pc desc");					
-				else if($_GET['ordem'] == "dificuldade1")//Dificuldade 
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level asc");
-				else if($_GET['ordem'] == "dificuldade2")
-					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY level desc");								
-				else//Padrão
+					
+				//Formas de Ordenação
+				$Order = $_GET['ordem'];
+				$Value = $_GET['value'];
+				if($Order)
+					$result = mysqli_query($db, "SELECT * FROM exercicio ORDER BY $Order $Value");
+				else
 					$result = mysqli_query($db, "SELECT * FROM exercicio");
-				//Fim da ordenação
 				
-				if(!$result){
-					echo "" ;
-					exit;
-				}
-		
 				$linha =1;
 				while($row = mysqli_fetch_assoc($result)) {
 					echo "<tr>

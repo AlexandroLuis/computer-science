@@ -8,22 +8,22 @@
 </head>
 <body>
 	<?php 
+		$class=$_GET['class'];
+		$type=$_GET['type'];
+		$status=$_GET['status'];
 		$id=$_GET['id'];
 		$name=$_GET['name'];
-		$class=$_GET['class'];
-		$description=$_GET['description'];
-		$type=$_GET['type'];
+		$description=$_GET['description'];		
 		$level2pc=$_GET['level2pc'];
-		$level=$_GET['level'];
-		$status=$_GET['status'];
-		$Observation=$_GET['Observation'];
+		$level=$_GET['level'];		
+		$Observation=$_GET['Observation'];	
 		$source=$_GET['source'];
 		
 		require('conexao.php');
-		//$alterar ="update usuarios set id='$id', name='$name', description='$description', level2pc='$level2pc', level='$level', Observation='$Observation', source='$source' where id='$id' ";
-		$alterar ="update usuarios set id='$id', name='$name', class='$class', description='$description', type='$type', level2pc='$level2pc', level='$level', status='$status', Observation='$Observation', source='$source' where id='$id' ";
+		//$alterar ="update usuarios set id='$id', name='$name', description='$description', level2pc='$level2pc', level='$level', Observation='$Observation' where id='$id' ";
+		$alterar ="update exercicio set id='$id', name='$name', class='$class', description='$description', type='$type', level2pc='$level2pc', level='$level', status='$status', Observation='$Observation', source='$source' where id='$id' ";
 		mysqli_query($db,$alterar) or die ('Não foi possível alterar');
-		echo"Alterado Com Sucesso!";
 	?>
+	<h1>Alterado Com Sucesso!</h1>
 </body>
 </html>
