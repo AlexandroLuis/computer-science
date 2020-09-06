@@ -1,1 +1,1 @@
-Projetos realizados na disciplica de "Ensino Extracurricular de Programação de Computadores", como extensão referente ao curso de ciência da computação.
+Projetos realizados na disciplica de "Ensino Extracurricular de Programação de Computadores".<br> Como projeto de extensão referente ao curso de ciência da computação.
