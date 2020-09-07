@@ -1,11 +1,11 @@
 /*
-    DickSort Developed by Alexandro 2020 
+    DickSort Developed by Alexandro 2020
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void Swap(int *a, int n){ // SWAP A[I] A[I+1]
+void Swap(int *a, int n){ /* Swap Values case Array[i] > Array[i+1]  */
     int i, t, r;
     for(i = 0; i < n-1; i++) {
         if(a[i] > a[i+1]){
@@ -16,7 +16,7 @@ void Swap(int *a, int n){ // SWAP A[I] A[I+1]
     }
 }
 
-int Verify(int *a, int n){// VERIFY IF A[I] > A[I+I]
+int Verify(int *a, int n){ /* Verify if Array[i] > Array[i+1] and return stop value to Sort function  */
     while(--n >= 1){
         if(a[n] < a[n-1])
             return 0;
@@ -25,12 +25,12 @@ int Verify(int *a, int n){// VERIFY IF A[I] > A[I+I]
 }
 
 void Sort(int *a, int n){
-    while(Verify(a, n) != 1)//SWAP IF VERIFY IS FALSE
+    while(Verify(a, n) != 1)/* Case Verify Still false, Swap values */
         Swap(a, n);
 }
 
 int main(){
-    int i, V[] = {7,35,	97,	18,	90,	70,	25,	33,	38,	57,	82,
+    int i, V[] = {1,2,	3,	18,	90,	70,	25,	33,	38,	57,	82,
                   50, 38,	65,	40,	79,	18,	92,	92,	50,	50,
                   31,	28,	25,	31,	19,	71,	86,	97,	81,	62,
                   1,	5,	57,	52,	68,	49,	29,	9,	20,	5,
@@ -40,7 +40,7 @@ int main(){
     for(i = 0; i < 50; i++)
         printf("%d ", V[i]);
 
-    Sort(V, 50);// 50 is n parameter
+    Sort(V, 50);/* 50 is Array size */
 
     printf("\nOrdered:\n");
     for(i = 0; i < 50; i++)
