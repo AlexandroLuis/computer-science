@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void Swap(int *a, int n){ /* Swap Values case Array[i] > Array[i+1]  */
+/* Swap Values case Array[i] > Array[i+1]  */
+void Swap(int *a, int n){ 
     int i, t, r;
     for(i = 0; i < n-1; i++) {
         if(a[i] > a[i+1]){
@@ -16,7 +17,8 @@ void Swap(int *a, int n){ /* Swap Values case Array[i] > Array[i+1]  */
     }
 }
 
-int Verify(int *a, int n){ /* Verify if Array[i] > Array[i+1] and return stop value to Sort function  */
+/* Verify if Array[i] > Array[i+1] and return stop value to Sort function  */
+int Verify(int *a, int n){ 
     while(--n >= 1){
         if(a[n] < a[n-1])
             return 0;
@@ -24,8 +26,9 @@ int Verify(int *a, int n){ /* Verify if Array[i] > Array[i+1] and return stop va
     return 1;
 }
 
+/* Case Verify Still false, Swap values */
 void Sort(int *a, int n){
-    while(Verify(a, n) != 1)/* Case Verify Still false, Swap values */
+    while(Verify(a, n) != 1)
         Swap(a, n);
 }
 
