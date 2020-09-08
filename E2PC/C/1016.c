@@ -1,6 +1,6 @@
-*/
+/*
   Distance
- /*
+ */
 #include <stdio.h>
 
 int main() {
