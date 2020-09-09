@@ -1,3 +1,3 @@
-enum LUZ{
+enum Luz{
     Vermelho, Ambar, Verde
 }
