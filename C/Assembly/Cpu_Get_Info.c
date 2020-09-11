@@ -3,8 +3,7 @@
 #include <cpuid.h>
 #include <string.h>
 
-int main(int argc, char **argv)
-{
+void cpu_info(){
     int op;
 
     int eax;
@@ -28,6 +27,11 @@ int main(int argc, char **argv)
     from[12] = '\0';
 
     printf("Your Cpu is %s", from);
+}
+
+int main(int argc, char **argv)
+{
+    cpu_info();
 
     return 0;
 }
