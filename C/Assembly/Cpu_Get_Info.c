@@ -21,13 +21,13 @@ int main(int argc, char **argv)
                        "=d" (edx)
                      : "a" (op));
 
-    char vendor[sizeof(int) * 3 + 1];
-    strncpy(vendor, (const char*) &ebx, sizeof(int));
-    strncpy(&vendor[8], (const char*) &ecx, sizeof(int));
-    strncpy(&vendor[4], (const char*) &edx, sizeof(int));
-    vendor[12] = '\0';
+    char from[sizeof(int) * 3 + 1];
+    strncpy(from, (const char*) &ebx, sizeof(int));
+    strncpy(&from[8], (const char*) &ecx, sizeof(int));
+    strncpy(&from[4], (const char*) &edx, sizeof(int));
+    from[12] = '\0';
 
-    printf("Your Cpu is %s", vendor);
+    printf("Your Cpu is %s", from);
 
     return 0;
 }
