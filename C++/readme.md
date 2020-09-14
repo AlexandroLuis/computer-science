@@ -1,0 +1,15 @@
+<h1>to-do list</h1><br>
+- e/s<br>
+- loop<br>
+-condição<br>
+-Função<br>
+-Recursão<br>
+-Alocaçã dinâmica<br>
+-sort<br>
+-Struct<br>
+-file<br>
+-pilha<br>
+-lista<br>
+-fila<br>
+-grafos<br>
+-vector<br>
