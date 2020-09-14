@@ -26,6 +26,6 @@ Como Contribuir, Desenvolver o algoritmo funcional, e fazer um merge dentro do l
 
 Material De estudo<br>
 - https://www.learncpp.com/ <br>
-- https://www.studytonight.com/cpp/<br><br
+- https://www.studytonight.com/cpp/<br><br>
 Não copiar o código, entender o desenvolvimento, criar seu próprio algoritmo e fazer a submissão!
 
