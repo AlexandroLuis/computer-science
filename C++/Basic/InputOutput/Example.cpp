@@ -2,10 +2,9 @@
 #include <string>
 using namespace std;
 
-int main()
-{
+int main(){
   string name;
-  cout << "Hello, What's your name? " << endl;
+  cout << "Hey, What's your name? " << endl;
   getline (cin, name);
-  cout << "Hello, " << name << "!\n";
+  cout << "How's going, " << name << "?\n";
 }
