@@ -15,6 +15,7 @@
 -iterador<br>
 -grafos<br>
 -vector<br>
--enum<br>
 -classes<br>
+-enum<br>
+-move_if_noexcept<br>
 -assembly<br>
