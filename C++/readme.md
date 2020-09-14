@@ -2,6 +2,7 @@
 - e/s<br>
 - loop<br>
 -condição<br>
+-string<br>
 -Função<br>
 -Recursão<br>
 -Alocaçã dinâmica<br>
@@ -11,5 +12,6 @@
 -pilha<br>
 -lista<br>
 -fila<br>
+-iterador<br>
 -grafos<br>
 -vector<br>
