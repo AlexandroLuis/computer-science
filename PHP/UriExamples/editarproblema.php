@@ -26,7 +26,7 @@
 	</head>
 <body>
 	<ul><!-- Menu Inicial -->
-		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
+		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['userName'];?>!</a></li>
 		<li style="float:right"><a href="logout.php">Sair</a></li>
 		<li style="float:right"><a href="Admin.php">Voltar</a></li>	
 	</ul><!-- Fim Menu Inicial -->

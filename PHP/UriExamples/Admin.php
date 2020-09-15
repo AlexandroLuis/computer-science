@@ -3,6 +3,7 @@
 	Versão 1.0 - 2020
 -->
 <?php
+	session_start();
 	ini_set('display_errors', 0 );
 	error_reporting(0);
 
@@ -20,8 +21,8 @@
 	</head>
 <body>
 	<ul><!-- Menu Inicial -->
-		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
-		<li style="float:right"><a id="myLink" title="Click to do something" href="" onclick="signOut();return false;">Sair</a></li>
+		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['userName'];?>!</a></li>
+		<li style="float:right"><a id="logout" title="Click to Logout" href="" onclick="signOut();return false;">Sair</a></li>
 		<li style="float:right"><a href="Cex.php">Inserir Novo</a></li>	
 	</ul><!-- Fim Menu Inicial -->
 	

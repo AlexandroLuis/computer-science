@@ -123,7 +123,7 @@ a:hover {
 }
 
 .form-style-8{
-				font-family: 'Open Sans Condensed', arial, sans;
+	font-family: 'Open Sans Condensed', arial, sans;
 				width: 500px;
 				padding: 30px;
 				background: #FFFFFF;
@@ -199,4 +199,5 @@ a:hover {
 			div.id2 {
 				width: 240;
 				float:right;
-			}
+			}			
+			

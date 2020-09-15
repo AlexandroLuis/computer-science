@@ -20,7 +20,7 @@
 	</head>
 <body align="center">
 	<ul>
-		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['usuario'];?>!</a></li>
+		<li style="float:left"><a href="perfil.php">Bem Vindo, <?php echo $_SESSION['userName'];?>!</a></li>
 		<li style="float:right"><a href="Cex.php">Recarregar</a></li>
 		<li style="float:right"><a href="Admin.php">Página Inicial</a></li>
 	</ul>
