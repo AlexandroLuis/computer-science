@@ -1,3 +1,6 @@
+/*
+    Struct Inside Main
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
