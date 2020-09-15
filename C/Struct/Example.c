@@ -1,3 +1,6 @@
+/*
+    Struct Both
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
