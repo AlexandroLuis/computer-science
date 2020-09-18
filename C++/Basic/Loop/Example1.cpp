@@ -8,11 +8,11 @@ int main(){
 
     P = (int*) malloc(10* sizeof(int));
 
-    for(i = 0; i < 10; i++)
+    for(i = 1; i < 11; i++)
         *(P+i) = i;
 
-    i = -1;
-    while(i++ < 9){
+    i = 0;
+    while(i++ < 10){
         cout << *(P+i) << " ";
     }
 }
