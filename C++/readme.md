@@ -33,5 +33,4 @@ Material De estudo<br>
 - Ultra Recomendado:<br>
   - https://github.com/jwasham/coding-interview-university/blob/master/extras/cheat%20sheets/STL%20Quick%20Reference%201.29.pdf <br><br>
   
-Não copiar o código, entender o desenvolvimento, criar seu próprio algoritmo e fazer a submissão!
 
