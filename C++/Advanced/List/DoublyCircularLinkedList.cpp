@@ -59,8 +59,20 @@ string nomepiloto(data **piloto, int i){
 /**
 
 **/
-void atualizarpontuacao(){
-    
+int atualizarpontuacao(data **piloto,int colocacao, int i){
+    data *aux;
+    aux = *piloto;
+
+    while(aux->id != i)
+        aux = aux->next;
+
+    int soma = [colocacao]{
+                            if(colocacao == 0)return 0;
+                            else if(colocacao < 3)return 5;
+                            else if(colocacao < 10) return 2;
+                            else return 1;
+                          };
+    aux->pontuacao += soma;
 }
 /**
 
@@ -89,7 +101,7 @@ int main(){
             cout << "Corrida " << j+1 << " do piloto ";printf("%s!\n", nomepiloto(&piloto, i));
             cout << "Digite a Colocação: ";
             cin >> colocacao;/** 0 para não terminou **/
-            atualizarpontuacao(&piloto, colocacao);
+            atualizarpontuacao(&piloto, colocacao, i);
             system("cls");
         }
     }
