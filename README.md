@@ -1,2 +1,1 @@
-**:dizzy: All My Computer Science Degree Projects! :dizzy:**<BR>
-  K
+**:dizzy: All My Computer Science Degree Projects! :dizzy:**
