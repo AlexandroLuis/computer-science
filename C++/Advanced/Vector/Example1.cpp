@@ -1,7 +1,7 @@
-/*
+/**
     This Example is one of My Studies of Google Software Engineer Interview
     You Can check it here : https://www.youtube.com/watch?v=XKu_SEDAykw
-*/
+**/
 #include <iostream>
 #include <vector>
 #include <stdbool.h>
