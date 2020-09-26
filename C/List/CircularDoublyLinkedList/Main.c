@@ -9,7 +9,7 @@ typedef struct Piloto{
     char nome[30];
     char equipe[30];
     int terminou;
-    int colocacao;
+    int pontuacao;
     struct Piloto *prox;
     struct Piloto *prev;
 }data;
@@ -28,8 +28,7 @@ void push(data **piloto, int i, char nome[], char equipe[]){
         aux_piloto->equipe[i] = equipe[i];
 	}
 	aux_piloto->prox = NULL;
-	aux_piloto->colocacao = 0;
-	aux_piloto->terminou = 0;
+	aux_piloto->pontuacao = 0;
     /* LISTA LIGADA SIMPLES, ARMAZENANDO VALOR NA ULTIMA POSIÇÃO */
 	if (*piloto == NULL){
 		*piloto = aux_piloto;
@@ -44,14 +43,12 @@ void push(data **piloto, int i, char nome[], char equipe[]){
 	}
 }
 
-void atualizarpontuacao(data **piloto, int j, int colocacao, char terminou){
+void atualizarpontuacao(data **piloto, int j, int colocacao){
     data *aux_piloto = *piloto;
     while(aux_piloto->id != j){
         aux_piloto = aux_piloto->prox;
     }
-    aux_piloto->colocacao += colocacao;
-    aux_piloto->terminou += terminou;
-
+    aux_piloto->pontuacao += colocacao;
 }
 
 int pontuacao(int colocacao, char terminou){
@@ -72,16 +69,15 @@ void ajustar(){
     printf("\n");
 }
 
-void mostrarcolocacao(data **piloto){
+void mostrarcolocacao(data **Colocacao){
     data *aux_piloto;
-    int calc, i = 1;
+    int i = 1;
 
-    aux_piloto = *piloto;
+    aux_piloto = *Colocacao;
     while(aux_piloto != NULL){
         ajustar();
         printf("PILOTO %s DA EQUIPE %s\n", aux_piloto->nome, aux_piloto->equipe);
-        printf("FICOU NA COLOCAÇÃO %d, COM %d PONTOS.\n", i, aux_piloto->colocacao);
-        printf("TERMINANDO %d de 5 corridas\n", calc);
+        printf("FICOU NA COLOCAÇÃO %d, COM %d PONTOS.\n", i, aux_piloto->pontuacao);
         aux_piloto = aux_piloto->prox;
         i++;
     }
@@ -89,15 +85,28 @@ void mostrarcolocacao(data **piloto){
 }
 
 void atualizarpilotos(data **piloto, data **Colocacao){
-    data *aux_stack;
-        /*FAZER FUNÇÃO LISTA ENCADEADA DUPLAMENTE LIGADA
-          PARA GUARDAR piloto na Colocacao*/
-}
+    data *aux_piloto, *auxtemp_piloto;
 
+    aux_piloto = *piloto;
+    auxtemp_piloto = (data*)malloc(sizeof(data));
+
+    if (*Colocacao == NULL)
+        *Colocacao = piloto;
+    else{
+        while(aux_piloto->prox != NULL && aux_piloto->pontuacao < aux_piloto->prox->pontuacao)
+            aux_piloto = aux_piloto->prox;
+
+        auxtemp_piloto->prox = aux_piloto->prox;
+        (*Colocacao)->prox = auxtemp_piloto->prox;
+    }
+}
+/**
+
+**/
 int main(){
     const int PL = 2, CR = 2;
-    char nome[30], equipe[30];
-    int colocacao, i, j, terminou;
+    char nome[30], equipe[30], terminou;
+    int colocacao, i, j;
     data *piloto, *Colocacao;
 
     setlocale(LC_ALL, "Portuguese");
@@ -130,7 +139,7 @@ int main(){
             printf("\nO Piloto Terminou a Corrida? ");
             scanf("%c", &terminou);
             colocacao = pontuacao(colocacao, terminou);
-            atualizarpontuacao(&piloto, j, colocacao, terminou);
+            atualizarpontuacao(&piloto, j, colocacao);
             system("cls");
         }
     }
