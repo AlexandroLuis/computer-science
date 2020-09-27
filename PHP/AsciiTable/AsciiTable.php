@@ -5,13 +5,13 @@
 <body>
 	<table border="1">
 		<tr>
-			<td width="150">Inteiro</td>
-			<td width="150">Caractere</td>
-			<td width="150">Binário</td>
-			<td width="150">Octal</td>
-			<td width="150">Ponto Flutuante</td>
-			<td width="150">Hexadecimal</td>
-			<td width="150">Notação Cientifica</td>
+			<td width="150">Inteiro</td><!--Integer %d-->
+			<td width="150">Caractere</td><!--Char %c-->
+			<td width="150">Binário</td><!--Binary %b-->
+			<td width="150">Octal</td><!--Octal %o-->
+			<td width="150">Ponto Flutuante</td><!--Floating %f-->
+			<td width="150">Hexadecimal</td><!--Hexadecimal %X-->
+			<td width="150">Notação Cientifica</td><!--Scientific Notation %e-->
 		</tr>
 		<?php
 			$i = 0;
