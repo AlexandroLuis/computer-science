@@ -4,24 +4,36 @@
 #include <locale.h>
 #include <conio.h>
 
+/**
+    Estrutura Piloto, armazena informações na fila de prioridades
+**/
 typedef struct Piloto{
     int id;
     char nome[30];
     char equipe[30];
-    int terminou;
     int pontuacao;
     struct Piloto *prox;
-    struct Piloto *prev;
 }data;
 
-void limpar(data **piloto) {
+/**
+    Função para limpar o ponteiro piloto da fila
+**/
+void limpar(data **piloto){
 	*piloto = NULL;
 }
 
+/**
+    Função push, para armazenar os valores da estrutura piloto no ponteiro piloto
+**/
 void push(data **piloto, int i, char nome[], char equipe[]){
     data *aux_piloto, *fim;
 
     aux_piloto = (data*)malloc (sizeof(data));
+
+    /**
+        Informações a serem guardadas na estrutura piloto
+        id, nome, equipe, e pontuação
+    **/
 	aux_piloto->id = i;
 	for(int i = 0; i < 30; i++){
         aux_piloto->nome[i] = nome[i];
@@ -29,20 +41,24 @@ void push(data **piloto, int i, char nome[], char equipe[]){
 	}
 	aux_piloto->prox = NULL;
 	aux_piloto->pontuacao = 0;
-    /* LISTA LIGADA SIMPLES, ARMAZENANDO VALOR NA ULTIMA POSIÇÃO */
-	if (*piloto == NULL){
-		*piloto = aux_piloto;
-	}
-	else {
-		fim = *piloto;
 
-		while(fim->prox != NULL) {
+    /**
+        LISTA LIGADA SIMPLES, ARMAZENANDO VALOR NA ULTIMA POSIÇÃO
+    **/
+	if(*piloto == NULL)
+        *piloto = aux_piloto;
+	else{
+		fim = *piloto;
+		while(fim->prox != NULL)
 			fim = fim->prox;
-		}
 		fim->prox = aux_piloto;
+		*piloto = fim;
 	}
 }
 
+/**
+    Função para incrementar a pontuação obtida pelos pilotos na corrida
+**/
 void atualizarpontuacao(data **piloto, int j, int colocacao){
     data *aux_piloto = *piloto;
     while(aux_piloto->id != j){
@@ -51,17 +67,23 @@ void atualizarpontuacao(data **piloto, int j, int colocacao){
     aux_piloto->pontuacao += colocacao;
 }
 
-int pontuacao(int colocacao, char terminou){
-    if(colocacao < 4 && terminou == 'S' || terminou == 's')
+/**
+    Função para retornar a pontuação de acordo com a colocação
+**/
+int pontuacao(int colocacao){
+    if(colocacao > 0 && colocacao < 4)
         return 10;
-    else if(colocacao > 3 && colocacao < 7 && terminou == 'S' || terminou == 's')
+    else if(colocacao > 3 && colocacao < 7)
             return 7;
-        else if(colocacao < 20 && terminou == 'S' || terminou == 's')
+        else if(colocacao < 21 && colocacao != 0)
                 return 5;
             else
                 return 0;
 }
 
+/**
+    Função para desenhar a interface
+**/
 void ajustar(){
     int i;
     for(i = 0; i < 50; i++)
@@ -69,11 +91,14 @@ void ajustar(){
     printf("\n");
 }
 
-void mostrarcolocacao(data **Colocacao){
+/**
+    Função para mostrar a colocação dos pilotos
+**/
+void mostrarcolocacao(data **piloto){
     data *aux_piloto;
     int i = 1;
 
-    aux_piloto = *Colocacao;
+    aux_piloto = *piloto;
     while(aux_piloto != NULL){
         ajustar();
         printf("PILOTO %s DA EQUIPE %s\n", aux_piloto->nome, aux_piloto->equipe);
@@ -84,37 +109,47 @@ void mostrarcolocacao(data **Colocacao){
     ajustar();
 }
 
-void atualizarpilotos(data **piloto, data **Colocacao){
+/**
+    Função para fazer a ordenação dos pilotos de acordo com a sua pontuação
+    FALTA :
+            PRECISA ORDENAR O PILOTO PASSANDO PILOTO PARA SORT
+**/
+void Sort(data **piloto, data **sort){
     data *aux_piloto, *auxtemp_piloto;
 
     aux_piloto = *piloto;
     auxtemp_piloto = (data*)malloc(sizeof(data));
 
-    if (*Colocacao == NULL)
-        *Colocacao = piloto;
+    if (*sort == NULL)
+        *sort = piloto;
     else{
         while(aux_piloto->prox != NULL && aux_piloto->pontuacao < aux_piloto->prox->pontuacao)
             aux_piloto = aux_piloto->prox;
 
         auxtemp_piloto->prox = aux_piloto->prox;
-        (*Colocacao)->prox = auxtemp_piloto->prox;
+        *piloto = auxtemp_piloto->prox;
     }
 }
+
 /**
 
 **/
 int main(){
     const int PL = 2, CR = 2;
-    char nome[30], equipe[30], terminou;
+    char nome[30], equipe[30];
     int colocacao, i, j;
-    data *piloto, *Colocacao;
+    data *piloto, *sort;
 
+    /**
+        Funções para UI
+    **/
     setlocale(LC_ALL, "Portuguese");
     system("color 3");
     limpar(&piloto);
 
-    /* ARMAZENAR INFORMAÇÕES DO PILOTO NUMA LISTA SIMPLES */
-
+    /**
+        ARMAZENAR INFORMAÇÕES DO PILOTO NUMA LISTA SIMPLES
+    **/
     for(i = 0; i < PL; i++){
         ajustar();
         printf("DIGITE AS INFORMAÇÕES DE CADASTRO DO PILOTO %d!\n", i+1);
@@ -127,7 +162,9 @@ int main(){
         system("cls");
     }
 
-    /* PONTUAÇÃO DOS PILOTOS NAS CORRIDAS */
+    /**
+        PONTUAÇÃO DOS PILOTOS NAS CORRIDAS
+    **/
     for(i = 0; i < CR; i++){
         for(j = 0; j < PL; j++){
             ajustar();
@@ -136,13 +173,16 @@ int main(){
             printf("\ndigite a Posição do piloto na corrida: ");
             scanf("%d", &colocacao);
             fflush(stdin);
-            printf("\nO Piloto Terminou a Corrida? ");
-            scanf("%c", &terminou);
-            colocacao = pontuacao(colocacao, terminou);
+            colocacao = pontuacao(colocacao);/** 0 para não terminou **/
             atualizarpontuacao(&piloto, j, colocacao);
             system("cls");
         }
     }
-    atualizarpilotos(&piloto, &Colocacao);
-    mostrarcolocacao(&Colocacao);
+
+    /**
+        Atualiza e mostra a pontuação dos pilotos
+    **/
+    Sort(&piloto, &sort);
+    printf("PONTUAÇÃO FINAL DO CAMPEONATO!\n");
+    mostrarcolocacao(&piloto);
 }
