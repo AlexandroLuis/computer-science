@@ -1,5 +1,3 @@
-#imports
-#-------------------------------------------------------------------------------
 import pandas as pd
 import schedule
 import re
@@ -20,8 +18,6 @@ from selenium.common.exceptions        import TimeoutException
 from datetime                          import datetime, timedelta
 from selenium.webdriver.chrome.options import Options
 
-#Chromedriver options setup
-#-------------------------------------------------------------------------------
 options = Options() 
 chromeOptions = webdriver.ChromeOptions()
 chromeOptions.add_argument("--start-maximized")
