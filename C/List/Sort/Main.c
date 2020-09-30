@@ -114,23 +114,27 @@ void mostrarcolocacao(data **piloto){
     FALTA :
             PRECISA ORDENAR O PILOTO PASSANDO PILOTO PARA SORT
 **/
-void Sort(data **piloto, data **sort){
-    data *aux_piloto, *auxtemp_piloto;
+void Sort(data **piloto){
+	data *N, *P = NULL;
+	int trade;
 
-    aux_piloto = *piloto;
-    auxtemp_piloto = (data*)malloc(sizeof(data));
+	N = (data*) malloc(sizeof(data));
+	N = *piloto;
 
-    if (*sort == NULL)
-        *sort = piloto;
-    else{
-        while(aux_piloto->prox != NULL && aux_piloto->pontuacao < aux_piloto->prox->pontuacao)
-            aux_piloto = aux_piloto->prox;
+	while(N != NULL){
+        P = N;
 
-        auxtemp_piloto->prox = aux_piloto->prox;
-        *piloto = auxtemp_piloto->prox;
-    }
+        while(P->prox != NULL){
+            if(P->pontuacao > P->prox->pontuacao){
+                trade = P->pontuacao;
+                P->pontuacao = P->prox->pontuacao;
+                P->prox->pontuacao = trade;
+            }
+            P = P->prox;
+        }
+        N = N->prox;
+	}
 }
-
 /**
 
 **/
@@ -138,7 +142,7 @@ int main(){
     const int PL = 2, CR = 2;
     char nome[30], equipe[30];
     int colocacao, i, j;
-    data *piloto, *sort;
+    data *piloto;
 
     /**
         Funções para UI
@@ -182,7 +186,7 @@ int main(){
     /**
         Atualiza e mostra a pontuação dos pilotos
     **/
-    Sort(&piloto, &sort);
+    Sort(&piloto);
     printf("PONTUAÇÃO FINAL DO CAMPEONATO!\n");
     mostrarcolocacao(&piloto);
 }
