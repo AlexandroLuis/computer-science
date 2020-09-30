@@ -38,13 +38,15 @@ int VerificacaoDeVitoria(char Mapa[])
     else return  - 1;
 }
 
-void FuncaoPrintarMapa(Info **Jogador, char Mapa[]){
+void FuncaoPrintarMapa(Info **Jogador, char Mapa[], int P){
     Info *Mostrar = *Jogador;
     system("cls");
     printf("\n\n\t\tJogo da Velha\n\n");
 
-    printf("\tJogador %s (X)\tJogador %s (O)\n\n\n", Mostrar->nome, Mostrar->prox->nome);
-
+    if(P % 2 == 0)
+        printf("\tJogador %s (O)\tJogador %s (X)\n\n\n", Mostrar->nome, Mostrar->prox->nome);
+    else
+        printf("\tJogador %s (X)\tJogador %s (O)\n\n\n", Mostrar->nome, Mostrar->prox->nome);
 
     printf("\t\t     |     |     \n");
     printf("\t\t  %c  |  %c  | %c  \n", Mapa[0], Mapa[1], Mapa[2]);
@@ -59,30 +61,31 @@ void FuncaoPrintarMapa(Info **Jogador, char Mapa[]){
 }
 
 void push(Info **Jogador, char nome[], int i){
-    Info *fim, *aux, *aux_prev;
+    Info *aux, *ULT;
+	aux = (Info *) malloc (sizeof(Info));
 
-    aux = (Info*) malloc(sizeof(Info));
-    aux->id = i;
+	aux->id = i;
 	for(int j = 0; j < 30; j++)
         aux->nome[j] = nome[j];
     aux->prox = NULL;
-    aux->prev = NULL;
 
-    if(*Jogador == NULL)
-        *Jogador = aux;
-	else{
-		fim = *Jogador;
-		while(fim->prox != NULL)
-			fim = fim->prox;
-		fim->prox = aux;
-		fim->prev = *Jogador;
-		*Jogador = fim;
+	if(*Jogador == NULL){
+		aux->prev = aux;
+		aux->prox = aux;
 	}
+	else{
+		ULT = (*Jogador)->prev;
+		aux->prev = ULT;
+		(*Jogador)->prev = aux;
+		aux->prox = *Jogador;
+		ULT->prox = aux;
+	}
+	*Jogador = aux;
 }
 
 int main(){
     Info *Jogador;
-    int i, Ponto;
+    int i, Ponto, P = 0;
     char nome[50], Valor;
     char Mapa[9]={'1','2','3','4','5','6','7','8','9'};
 
@@ -96,9 +99,9 @@ int main(){
 
     i = 0;
     do{
-        FuncaoPrintarMapa(&Jogador, Mapa);
+        FuncaoPrintarMapa(&Jogador, Mapa, P);
 
-        printf("Jogador %s, Digite A Posicao Escolhida:  ", Jogador->nome);
+        printf("Jogador %s, Digite a Posicao Escolhida:  ", Jogador->nome);
         scanf("%d", &Ponto);
 
         Valor = (Jogador->id == 0) ? 'X' : 'O';
@@ -134,19 +137,15 @@ int main(){
             printf("Movimento Invalido!");
             getch();
         }
+        P++;
         i = VerificacaoDeVitoria(Mapa);
-
-        //if(Jogador->prox != NULL)
-           // Jogador = Jogador->prox;
-       // else
-           // Jogador = Jogador->prev;
-
+        Jogador = Jogador->prox;
     }while (i ==  - 1);
 
-    FuncaoPrintarMapa(&Jogador, Mapa);
+    FuncaoPrintarMapa(&Jogador, Mapa, P);
 
     if (i == 1)
-        printf("Jogador %s Ganhou!\n", Jogador->nome);
+        printf("Jogador %s Ganhou!\n", Jogador->prox->nome);
     else
         printf("Empate!\n");
 }
