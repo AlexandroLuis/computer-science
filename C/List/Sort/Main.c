@@ -176,7 +176,6 @@ int main(){
             ajustar();
             printf("\ndigite a Posição do piloto na corrida: ");
             scanf("%d", &colocacao);
-            fflush(stdin);
             colocacao = pontuacao(colocacao);/** 0 para não terminou **/
             atualizarpontuacao(&piloto, j, colocacao);
             system("cls");
