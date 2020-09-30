@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include <stdbool.h>
 
 typedef struct JogoDaVelha{
     int id;
@@ -133,10 +134,6 @@ int main(){
         else if (Ponto == 9 && Mapa[8] == '9')
             Mapa[8] = Valor;
 
-        else{
-            printf("Movimento Invalido!");
-            getch();
-        }
         P++;
         i = VerificacaoDeVitoria(Mapa);
         Jogador = Jogador->prox;
