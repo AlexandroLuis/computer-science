@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <conio.h>
-#include <stdbool.h>
 
 typedef struct JogoDaVelha{
     int id;
@@ -32,7 +31,8 @@ void Limpar(Info **Jogador, Tabuleiro **Informacoes){
 
 int VerificacaoDeVitoria(Tabuleiro **Informacoes){
     Tabuleiro *VerificadorDeVitoria = *Informacoes;
-
+    
+    /** COMPARAR QUEM GANHOU **/
          if(VerificadorDeVitoria->Mapa[0] == VerificadorDeVitoria->Mapa[1] && VerificadorDeVitoria->Mapa[1] == VerificadorDeVitoria->Mapa[2])return 1;
     else if(VerificadorDeVitoria->Mapa[3] == VerificadorDeVitoria->Mapa[4] && VerificadorDeVitoria->Mapa[4] == VerificadorDeVitoria->Mapa[5])return 1;
     else if(VerificadorDeVitoria->Mapa[6] == VerificadorDeVitoria->Mapa[7] && VerificadorDeVitoria->Mapa[7] == VerificadorDeVitoria->Mapa[8])return 1;
@@ -41,9 +41,13 @@ int VerificacaoDeVitoria(Tabuleiro **Informacoes){
     else if(VerificadorDeVitoria->Mapa[2] == VerificadorDeVitoria->Mapa[5] && VerificadorDeVitoria->Mapa[5] == VerificadorDeVitoria->Mapa[8])return 1;
     else if(VerificadorDeVitoria->Mapa[0] == VerificadorDeVitoria->Mapa[4] && VerificadorDeVitoria->Mapa[4] == VerificadorDeVitoria->Mapa[8])return 1;
     else if(VerificadorDeVitoria->Mapa[2] == VerificadorDeVitoria->Mapa[4] && VerificadorDeVitoria->Mapa[4] == VerificadorDeVitoria->Mapa[6])return 1;
+    
+    /** COMPARAR SE EMPATOU **/
     else if(VerificadorDeVitoria->Mapa[0] != '1' && VerificadorDeVitoria->Mapa[1] != '2' && VerificadorDeVitoria->Mapa[2] != '3' &&
             VerificadorDeVitoria->Mapa[3] != '4' && VerificadorDeVitoria->Mapa[4] != '5' && VerificadorDeVitoria->Mapa[5] != '6' &&
             VerificadorDeVitoria->Mapa[6] != '7' && VerificadorDeVitoria->Mapa[7] != '8' && VerificadorDeVitoria->Mapa[8] != '9')return 0;
+    
+    /** VERIFICA SE AIDA NÃO ACABOU **/
     else return  - 1;
 }
 
@@ -67,7 +71,6 @@ void FuncaoPrintarMapa(Info **Jogador, Tabuleiro **Informacoes, int P){
     printf("\t\t     |     |     \n");
     printf("\t\t  %c  |  %c  | %c  \n", MostrarMapa->Mapa[6], MostrarMapa->Mapa[7], MostrarMapa->Mapa[8]);
     printf("\t\t     |     |     \n\n");
-
 }
 
 void push(Info **Jogador, char nome[], int i){
@@ -115,7 +118,7 @@ int main(){
         printf("Jogador %s, Digite a Posicao Escolhida:  ", Jogador->nome);
         scanf("%d", &Ponto);
 
-        Valor = (Jogador->id == 0) ? 'X' : 'O';
+        Valor = (Jogador->id == 0) ? 'O' : 'X';
 
         if (Ponto == 1 && Informacoes->Mapa[0] == '1')
             Informacoes->Mapa[0] = Valor;
