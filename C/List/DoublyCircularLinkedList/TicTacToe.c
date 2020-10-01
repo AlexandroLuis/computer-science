@@ -31,7 +31,7 @@ void Limpar(Info **Jogador, Tabuleiro **Informacoes){
 
 int VerificacaoDeVitoria(Tabuleiro **Informacoes){
     Tabuleiro *VerificadorDeVitoria = *Informacoes;
-    
+
     /** COMPARAR QUEM GANHOU **/
          if(VerificadorDeVitoria->Mapa[0] == VerificadorDeVitoria->Mapa[1] && VerificadorDeVitoria->Mapa[1] == VerificadorDeVitoria->Mapa[2])return 1;
     else if(VerificadorDeVitoria->Mapa[3] == VerificadorDeVitoria->Mapa[4] && VerificadorDeVitoria->Mapa[4] == VerificadorDeVitoria->Mapa[5])return 1;
@@ -41,12 +41,12 @@ int VerificacaoDeVitoria(Tabuleiro **Informacoes){
     else if(VerificadorDeVitoria->Mapa[2] == VerificadorDeVitoria->Mapa[5] && VerificadorDeVitoria->Mapa[5] == VerificadorDeVitoria->Mapa[8])return 1;
     else if(VerificadorDeVitoria->Mapa[0] == VerificadorDeVitoria->Mapa[4] && VerificadorDeVitoria->Mapa[4] == VerificadorDeVitoria->Mapa[8])return 1;
     else if(VerificadorDeVitoria->Mapa[2] == VerificadorDeVitoria->Mapa[4] && VerificadorDeVitoria->Mapa[4] == VerificadorDeVitoria->Mapa[6])return 1;
-    
+
     /** COMPARAR SE EMPATOU **/
     else if(VerificadorDeVitoria->Mapa[0] != '1' && VerificadorDeVitoria->Mapa[1] != '2' && VerificadorDeVitoria->Mapa[2] != '3' &&
             VerificadorDeVitoria->Mapa[3] != '4' && VerificadorDeVitoria->Mapa[4] != '5' && VerificadorDeVitoria->Mapa[5] != '6' &&
             VerificadorDeVitoria->Mapa[6] != '7' && VerificadorDeVitoria->Mapa[7] != '8' && VerificadorDeVitoria->Mapa[8] != '9')return 0;
-    
+
     /** VERIFICA SE AIDA NÃO ACABOU **/
     else return  - 1;
 }
@@ -58,9 +58,9 @@ void FuncaoPrintarMapa(Info **Jogador, Tabuleiro **Informacoes, int P){
     printf("\n\n\t\tJogo da Velha\n\n");
 
     if(P % 2 == 0)
-        printf("\tJogador %s (O)\tJogador %s (X)\n\n\n", MostrarJogador->nome, MostrarJogador->prox->nome);
-    else
         printf("\tJogador %s (X)\tJogador %s (O)\n\n\n", MostrarJogador->nome, MostrarJogador->prox->nome);
+    else
+        printf("\tJogador %s (O)\tJogador %s (X)\n\n\n", MostrarJogador->nome, MostrarJogador->prox->nome);
 
     printf("\t\t     |     |     \n");
     printf("\t\t  %c  |  %c  | %c  \n", MostrarMapa->Mapa[0], MostrarMapa->Mapa[1], MostrarMapa->Mapa[2]);
