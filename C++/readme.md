@@ -30,6 +30,7 @@ Material De estudo<br>
 - https://www.w3schools.com/cpp/ <br>
 - https://google.github.io/styleguide/cppguide.html <br>
 - https://www.cprogramming.com/tutorial/functors-function-objects-in-c++.html <br>
+- http://www.cplusplus.com/ <br>
 - Ultra Recomendado:<br>
   - https://github.com/jwasham/coding-interview-university/blob/master/extras/cheat%20sheets/STL%20Quick%20Reference%201.29.pdf <br><br>
   
