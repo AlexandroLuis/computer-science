@@ -10,7 +10,6 @@ typedef struct estrutura{
 
 int main(){
     Data EstruturaLista;
-    list <string> ::iterator PonteiroDoIterador;
     string VariavelRecebeNome;
 
     for(int i = 0; i < 2; i++){
@@ -18,7 +17,7 @@ int main(){
         cin.get();
         EstruturaLista.Nome.push_front(VariavelRecebeNome);
     }
-    for(PonteiroDoIterador = EstruturaLista.Nome.begin(); PonteiroDoIterador != EstruturaLista.Nome.end(); PonteiroDoIterador++)
+    for(list <string> ::iterator PonteiroDoIterador = EstruturaLista.Nome.begin(); PonteiroDoIterador != EstruturaLista.Nome.end(); PonteiroDoIterador++)
         cout << *PonteiroDoIterador << " ";
 
 }
