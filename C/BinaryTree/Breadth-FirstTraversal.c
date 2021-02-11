@@ -39,6 +39,6 @@ int Altura(Data **node){
         if (EAltura > DAltura)
             return(EAltura+1);
         else 
-			return(DAltura+1);
+	    return(DAltura+1);
     }
 }
