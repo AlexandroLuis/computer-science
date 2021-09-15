@@ -3,18 +3,20 @@ from copy import deepcopy
 Direcoes = {"Cima": [-1, 0], "Baixo": [1, 0], "Esquerda": [0, -1], "Direita": [0, 1]}
 Objetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
+
 # Classe para a Criação dos Nós
 class Node:
-    def __init__(self, NoAtual, NoAnterior, g, h, dir):
+    def __init__(self, NoAtual, NoAnterior, V1, V2, dir):
         self.NoAtual = NoAtual
         self.NoAnterior = NoAnterior
-        self.g = g
-        self.h = h
+        self.V1 = V1
+        self.V2 = V2
         self.dir = dir
 
-    def f(self):
-        return self.g + self.h
-        
+    def Soma(self):
+        return self.V1 + self.V2
+
+
 # Função para Mostrar os caminhos
 def Saida(No):
     for i in range(len(No)):
@@ -25,10 +27,12 @@ def Saida(No):
                 print(" ", j, end=' ')
         print("")
 
+
 def RetornaPosicao(EstadoAtual, Valor):
     for i in range(len(EstadoAtual)):
         if Valor in EstadoAtual[i]:
             return (i, EstadoAtual[i].index(Valor))
+
 
 # Calcula o custo euclediano
 def CustoEuclediano(EstadoAtual):
@@ -40,8 +44,9 @@ def CustoEuclediano(EstadoAtual):
 
     return SomaCusto
 
+
 def NoAdjacente(node):
-    listNode = []
+    ListaDosNos = []
     PosicaoVazia = RetornaPosicao(node.NoAtual, 0)
 
     for dir in Direcoes.keys():
@@ -50,20 +55,22 @@ def NoAdjacente(node):
             NovoEstado = deepcopy(node.NoAtual)
             NovoEstado[PosicaoVazia[0]][PosicaoVazia[1]] = node.NoAtual[NovaPosicao[0]][NovaPosicao[1]]
             NovoEstado[NovaPosicao[0]][NovaPosicao[1]] = 0
-            listNode.append(Node(NovoEstado, node.NoAtual, node.g + 1, CustoEuclediano(NovoEstado), dir))
+            ListaDosNos.append(Node(NovoEstado, node.NoAtual, node.V1 + 1, CustoEuclediano(NovoEstado), dir))
 
-    return listNode
+    return ListaDosNos
+
 
 # Busca pelo melhor caminho
 def RetornoMelhorCaminho(Abertos):
     TesteInicial = True
 
     for no in Abertos.values():
-        if TesteInicial or no.f() < Melhor:
+        if TesteInicial or no.Soma() < Melhor:
             TesteInicial = False
             MelhorNo = no
-            Melhor = MelhorNo.f()
+            Melhor = MelhorNo.Soma()
     return MelhorNo
+
 
 # Constroi os caminhos
 def ConstruirCaminho(Fechados):
@@ -85,8 +92,9 @@ def ConstruirCaminho(Fechados):
     Desvios.reverse()
     return Desvios
 
-def main(puzzle):
-    Abertos = {str(puzzle): Node(puzzle, puzzle, 0, CustoEuclediano(puzzle), "")}
+
+def main(Param):
+    Abertos = {str(Param): Node(Param, Param, 0, CustoEuclediano(Param), "")}
     Fechados = {}
 
     # Busca
@@ -100,11 +108,12 @@ def main(puzzle):
         adj_node = NoAdjacente(NoDeTeste)
         for node in adj_node:
             if str(node.NoAtual) in Fechados.keys() or str(node.NoAtual) in Abertos.keys() and Abertos[
-                str(node.NoAtual)].f() < node.f():
-                    continue
+                str(node.NoAtual)].Soma() < node.Soma():
+                continue
             Abertos[str(node.NoAtual)] = node
 
         del Abertos[str(NoDeTeste.NoAtual)]
+
 
 if __name__ == '__main__':
     cont = 0
