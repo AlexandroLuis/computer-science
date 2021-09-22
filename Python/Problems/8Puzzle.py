@@ -1,6 +1,6 @@
 from copy import deepcopy
 from random import sample
-import sys
+import os
 
 Direcoes = {"Cima": [-1, 0], "Baixo": [1, 0], "Esquerda": [0, -1], "Direita": [0, 1]}
 Objetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
@@ -20,6 +20,9 @@ class Node:
 
     def Soma(self):
         return self.V1 + self.DistE
+
+    def getState(self):
+        return self.state
 
 
 '''
@@ -97,45 +100,42 @@ def RetornoMelhorCaminho(Abertos):
 '''
 def ConstruirCaminho(Fechados):
     no = Fechados[str(Objetivo)]
-    Desvios = list()
+    Caminhos = list()
 
     while no.V3:
-        Desvios.append({
-            'V3': no.V3,
-            'no': no.NoAtual
-        })
+        Caminhos.append({'V3': no.V3, 'no': no.NoAtual})
         no = Fechados[str(no.NoAnterior)]
 
-    Desvios.append({
-        'V3': '',
-        'no': no.NoAtual
-    })
+    Caminhos.append({'V3': '', 'no': no.NoAtual})
 
-    Desvios.reverse()
-    return Desvios
+    Caminhos.reverse()
+    #print(Caminhos)
+    return Caminhos
+
+
+def somacount(vet):
+    count = 0
+    for i in range(0, 9):
+        for j in range(i + 1, 9):
+            if vet[j] != -1 and vet[i] != -1 and vet[i] > vet[j]:
+                count += 1
+    return count
 
 
 def BuscaSolucao(Entrada):
-    counter = 0
-
-    for i in range(2):
-        j = i + 1
-        for j in range(3):
-            if (int(Entrada[j][i]) > 0 and int(Entrada[j][i]) > 0 and int(Entrada[j][i]) > int(Entrada[i][j])):
-                counter += 1
-
-    return True if counter % 2 == 0 else False
+    count = somacount([j for sub in Entrada for j in sub])
+    return bool(count % 2 == 0)
 
 
 '''
 
 '''
 def Start(Entrada):
-    if BuscaSolucao(Entrada) == False:
+    if BuscaSolucao(Entrada):
         return False
     Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaEuclediana(Entrada), "")}
     Fechados = {}
-    j = 2
+    j = 3
 
     '''
         Realiza as buscas
@@ -153,10 +153,11 @@ def Start(Entrada):
 
             NosAdjacentes = NoAdjacente(NoDeTeste)
             for no in NosAdjacentes:
-                if str(no.NoAtual) in Fechados.keys() or str(no.NoAtual) in Abertos.keys() and Abertos[str(no.NoAtual)].Soma() < no.Soma():
+                if str(no.NoAtual) in Fechados.keys() or str(no.NoAtual) in Abertos.keys() and \
+                        Abertos[str(no.NoAtual)].Soma() < no.Soma():
                     continue
-                Abertos[str(no.NoAtual)] = no
-
+                else:
+                    Abertos[str(no.NoAtual)] = no
             del Abertos[str(NoDeTeste.NoAtual)]
 
     elif j == 2:
@@ -171,34 +172,38 @@ def Start(Entrada):
 
             NosAdjacentes = NoAdjacente(NoDeTeste)
             for no in NosAdjacentes:
-                if no not in Fechados:
+                if str(no.NoAtual) not in Fechados.keys():
                     Abertos[str(no.NoAtual)] = no
             del Abertos[str(NoDeTeste.NoAtual)]
 
     elif j == 3:
-        # Greedy
+        # Greedy, melhor caso 1°
         while True:
-            break
             NoDeTeste = RetornoMelhorCaminho(Abertos)
             Fechados[str(NoDeTeste.NoAtual)] = NoDeTeste
 
             if NoDeTeste.NoAtual == Objetivo:
-                print("Dfs")
+                print("Gulosa")
                 return ConstruirCaminho(Fechados)
 
             NosAdjacentes = NoAdjacente(NoDeTeste)
-
+            for no in NosAdjacentes:
+                if no in Fechados:
+                    continue
+                if str(no.NoAtual) in Abertos.keys():
+                    Abertos[str(no.NoAtual)] = no
+                del Abertos[str(NoDeTeste.NoAtual)]
 
 '''
 
 '''
 if __name__ == '__main__':
     cont = 0
-    x = 3
+    x = 1
 
     # Entrada Possível
     if x == 1:
-        Entrada = Start([[1, 2, 0], [4, 5, 3], [7, 8, 6]])
+        Entrada = Start([[4, 1, 2], [0, 5, 3], [7, 8, 6]])
 
     # Entrada Impossível
     elif x == 2:
