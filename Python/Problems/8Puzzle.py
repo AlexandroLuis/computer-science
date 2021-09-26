@@ -135,7 +135,7 @@ def Start(Entrada):
         return False
     Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaEuclediana(Entrada), "")}
     Fechados = {}
-    j = 3
+    j = 1
 
     '''
         Realiza as buscas
@@ -188,15 +188,19 @@ def Start(Entrada):
 
             NosAdjacentes = NoAdjacente(NoDeTeste)
             for no in NosAdjacentes:
-                if no in Fechados:
+                if str(no.NoAtual) not in Fechados.keys():
+                    Abertos[str(no.NoAtual)] = no
+            del Abertos[str(NoDeTeste.NoAtual)]
+
+'''
+            for no in NosAdjacentes:
+                if str(no.NoAtual) in Fechados.keys():
                     continue
                 if str(no.NoAtual) in Abertos.keys():
                     Abertos[str(no.NoAtual)] = no
                 del Abertos[str(NoDeTeste.NoAtual)]
-
 '''
 
-'''
 if __name__ == '__main__':
     cont = 0
     x = 1
