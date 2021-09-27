@@ -11,18 +11,15 @@ Objetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
       nas funções NoAdjacente & main 
 '''
 class Node:
-    def __init__(self, NoAtual, NoAnterior, V1, DistE, V3):
+    def __init__(self, NoAtual, NoAnterior, V1, DistE, ListCam):
         self.NoAtual = NoAtual
         self.NoAnterior = NoAnterior
         self.V1 = V1
         self.DistE = DistE
-        self.V3 = V3
+        self.ListCam = ListCam
 
     def Soma(self):
         return self.V1 + self.DistE
-
-    def getState(self):
-        return self.state
 
 
 '''
@@ -70,13 +67,13 @@ def NoAdjacente(no):
     ListaDosNos = []
     PosicaoVazia = RetornaPosicao(no.NoAtual, 0)
 
-    for V3 in Direcoes.keys():
-        NovaPosicao = (PosicaoVazia[0] + Direcoes[V3][0], PosicaoVazia[1] + Direcoes[V3][1])
+    for ListCam in Direcoes.keys():
+        NovaPosicao = (PosicaoVazia[0] + Direcoes[ListCam][0], PosicaoVazia[1] + Direcoes[ListCam][1])
         if 0 <= NovaPosicao[0] < len(no.NoAtual) and 0 <= NovaPosicao[1] < len(no.NoAtual[0]):
             NovoEstado = deepcopy(no.NoAtual)
             NovoEstado[PosicaoVazia[0]][PosicaoVazia[1]] = no.NoAtual[NovaPosicao[0]][NovaPosicao[1]]
             NovoEstado[NovaPosicao[0]][NovaPosicao[1]] = 0
-            ListaDosNos.append(Node(NovoEstado, no.NoAtual, no.V1 + 1, DistanciaEuclediana(NovoEstado), V3))
+            ListaDosNos.append(Node(NovoEstado, no.NoAtual, no.V1 + 1, DistanciaEuclediana(NovoEstado), ListCam))
 
     return ListaDosNos
 
@@ -102,11 +99,11 @@ def ConstruirCaminho(Fechados):
     no = Fechados[str(Objetivo)]
     Caminhos = list()
 
-    while no.V3:
-        Caminhos.append({'V3': no.V3, 'no': no.NoAtual})
+    while no.ListCam:
+        Caminhos.append({'ListCam': no.ListCam, 'no': no.NoAtual})
         no = Fechados[str(no.NoAnterior)]
 
-    Caminhos.append({'V3': '', 'no': no.NoAtual})
+    Caminhos.append({'ListCam': '', 'no': no.NoAtual})
 
     Caminhos.reverse()
     #print(Caminhos)
@@ -127,15 +124,12 @@ def BuscaSolucao(Entrada):
     return bool(count % 2 == 0)
 
 
-'''
-
-'''
 def Start(Entrada):
     if BuscaSolucao(Entrada):
         return False
     Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaEuclediana(Entrada), "")}
     Fechados = {}
-    j = 1
+    j = 3
 
     '''
         Realiza as buscas
@@ -160,6 +154,7 @@ def Start(Entrada):
                     Abertos[str(no.NoAtual)] = no
             del Abertos[str(NoDeTeste.NoAtual)]
 
+
     elif j == 2:
         # Dfs
         while True:
@@ -176,6 +171,7 @@ def Start(Entrada):
                     Abertos[str(no.NoAtual)] = no
             del Abertos[str(NoDeTeste.NoAtual)]
 
+
     elif j == 3:
         # Greedy, melhor caso 1°
         while True:
@@ -188,18 +184,10 @@ def Start(Entrada):
 
             NosAdjacentes = NoAdjacente(NoDeTeste)
             for no in NosAdjacentes:
-                if str(no.NoAtual) not in Fechados.keys():
+                if str(no.NoAtual) in Abertos.keys():
                     Abertos[str(no.NoAtual)] = no
             del Abertos[str(NoDeTeste.NoAtual)]
 
-'''
-            for no in NosAdjacentes:
-                if str(no.NoAtual) in Fechados.keys():
-                    continue
-                if str(no.NoAtual) in Abertos.keys():
-                    Abertos[str(no.NoAtual)] = no
-                del Abertos[str(NoDeTeste.NoAtual)]
-'''
 
 if __name__ == '__main__':
     cont = 0
