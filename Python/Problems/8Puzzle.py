@@ -129,7 +129,7 @@ def Start(Entrada):
         return False
     Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaEuclediana(Entrada), "")}
     Fechados = {}
-    j = 3
+    j = 1
 
     '''
         Realiza as buscas
@@ -185,7 +185,8 @@ def Start(Entrada):
             NosAdjacentes = NoAdjacente(NoDeTeste)
             for no in NosAdjacentes:
                 if str(no.NoAtual) in Abertos.keys():
-                    Abertos[str(no.NoAtual)] = no
+                    continue
+                Abertos[str(no.NoAtual)] = no
             del Abertos[str(NoDeTeste.NoAtual)]
 
 
