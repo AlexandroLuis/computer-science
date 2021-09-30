@@ -1,5 +1,6 @@
 from copy import deepcopy
 from random import sample
+import math
 import os
 
 Direcoes = {"Cima": [-1, 0], "Baixo": [1, 0], "Esquerda": [0, -1], "Direita": [0, 1]}
@@ -47,8 +48,7 @@ def RetornaPosicao(EstadoAtual, Valor):
 
 
 '''
-    Calcula a distancia euclediano a partir da soma 
-    absoluta da posicao do estado e do objetivo
+    Calcula a distancia euclediana
 '''
 def DistanciaEuclediana(EstadoAtual):
     SomaCusto = 0
@@ -60,9 +60,32 @@ def DistanciaEuclediana(EstadoAtual):
     return SomaCusto
 
 
-'''
+def DistanciaManhattan(EstadoAtual):
+    SomaCusto = 0
+    for i in range(len(EstadoAtual)):
+        for j in range(len(EstadoAtual[0])):
+            Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
+            SomaCusto += abs((j - Posicao[0]) % 3 - i % 3) + abs((j - Posicao[1]) // 3 - i // 3)
 
-'''
+    return SomaCusto
+
+
+def DistanciaForaDeLugar(EstadoAtual):
+    SomaCusto = -1
+
+    for i in range(len(EstadoAtual)):
+        for j in range(len(EstadoAtual)):
+            if EstadoAtual[i][j] != Objetivo[i][j]:
+                SomaCusto += 1
+
+    for i in range(len(EstadoAtual)):
+        for j in range(len(EstadoAtual[0])):
+            SomaCusto += math.fabs((EstadoAtual[i][j] - Objetivo[i][j]))
+
+    #print(SomaCusto)
+    return SomaCusto
+
+
 def NoAdjacente(no):
     ListaDosNos = []
     PosicaoVazia = RetornaPosicao(no.NoAtual, 0)
@@ -127,7 +150,7 @@ def BuscaSolucao(Entrada):
 def Start(Entrada):
     if BuscaSolucao(Entrada):
         return False
-    Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaEuclediana(Entrada), "")}
+    Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaForaDeLugar(Entrada), "")}
     Fechados = {}
     j = 1
 
