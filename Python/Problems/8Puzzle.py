@@ -50,39 +50,36 @@ def RetornaPosicao(EstadoAtual, Valor):
 '''
     Calcula a distancia euclediana
 '''
-def DistanciaEuclediana(EstadoAtual):
+def Heuristica(EstadoAtual):
     SomaCusto = 0
-    for i in range(len(EstadoAtual)):
-        for j in range(len(EstadoAtual[0])):
-            Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
-            SomaCusto += abs(i - Posicao[0]) + abs(j - Posicao[1])
+    j = 3
 
-    return SomaCusto
+    # Euclediana
+    if j == 1:
+        for i in range(len(EstadoAtual)):
+            for j in range(len(EstadoAtual[0])):
+                Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
+                SomaCusto += abs(i - Posicao[0]) + abs(j - Posicao[1])
 
+    # Manhattam 
+    elif j == 2:
+        for i in range(len(EstadoAtual)):
+            for j in range(len(EstadoAtual[0])):
+                Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
+                SomaCusto += abs((j - Posicao[0]) % 3 - i % 3) + abs((j - Posicao[1]) // 3 - i // 3)
 
-def DistanciaManhattan(EstadoAtual):
-    SomaCusto = 0
-    for i in range(len(EstadoAtual)):
-        for j in range(len(EstadoAtual[0])):
-            Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
-            SomaCusto += abs((j - Posicao[0]) % 3 - i % 3) + abs((j - Posicao[1]) // 3 - i // 3)
+    # Misplaced 
+    elif j == 3:
+        SomaCusto = -1
+        for i in range(len(EstadoAtual)):
+            for j in range(len(EstadoAtual)):
+                if EstadoAtual[i][j] != Objetivo[i][j]:
+                    SomaCusto += 1
 
-    return SomaCusto
+        for i in range(len(EstadoAtual)):
+            for j in range(len(EstadoAtual[0])):
+                SomaCusto += math.fabs((EstadoAtual[i][j] - Objetivo[i][j]))
 
-
-def DistanciaForaDeLugar(EstadoAtual):
-    SomaCusto = -1
-
-    for i in range(len(EstadoAtual)):
-        for j in range(len(EstadoAtual)):
-            if EstadoAtual[i][j] != Objetivo[i][j]:
-                SomaCusto += 1
-
-    for i in range(len(EstadoAtual)):
-        for j in range(len(EstadoAtual[0])):
-            SomaCusto += math.fabs((EstadoAtual[i][j] - Objetivo[i][j]))
-
-    #print(SomaCusto)
     return SomaCusto
 
 
@@ -96,7 +93,7 @@ def NoAdjacente(no):
             NovoEstado = deepcopy(no.NoAtual)
             NovoEstado[PosicaoVazia[0]][PosicaoVazia[1]] = no.NoAtual[NovaPosicao[0]][NovaPosicao[1]]
             NovoEstado[NovaPosicao[0]][NovaPosicao[1]] = 0
-            ListaDosNos.append(Node(NovoEstado, no.NoAtual, no.V1 + 1, DistanciaEuclediana(NovoEstado), ListCam))
+            ListaDosNos.append(Node(NovoEstado, no.NoAtual, no.V1 + 1, Heuristica(NovoEstado), ListCam))
 
     return ListaDosNos
 
@@ -150,7 +147,7 @@ def BuscaSolucao(Entrada):
 def Start(Entrada):
     if BuscaSolucao(Entrada):
         return False
-    Abertos = {str(Entrada): Node(Entrada, Entrada, 0, DistanciaForaDeLugar(Entrada), "")}
+    Abertos = {str(Entrada): Node(Entrada, Entrada, 0, Heuristica(Entrada), "")}
     Fechados = {}
     j = 1
 
