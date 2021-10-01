@@ -3,6 +3,13 @@ from random import sample
 import math
 import os
 
+'''
+    8 Puzzle
+    Manhattan, Misplaced and Eucledian heuristic
+    A*, DFS, Greedy search
+'''
+
+
 Direcoes = {"Cima": [-1, 0], "Baixo": [1, 0], "Esquerda": [0, -1], "Direita": [0, 1]}
 Objetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
@@ -61,14 +68,14 @@ def Heuristica(EstadoAtual):
                 Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
                 SomaCusto += abs(i - Posicao[0]) + abs(j - Posicao[1])
 
-    # Manhattam 
+    # Manhattam
     elif j == 2:
         for i in range(len(EstadoAtual)):
             for j in range(len(EstadoAtual[0])):
                 Posicao = RetornaPosicao(Objetivo, EstadoAtual[i][j])
                 SomaCusto += abs((j - Posicao[0]) % 3 - i % 3) + abs((j - Posicao[1]) // 3 - i // 3)
 
-    # Misplaced 
+    # Misplaced
     elif j == 3:
         SomaCusto = -1
         for i in range(len(EstadoAtual)):
@@ -78,7 +85,7 @@ def Heuristica(EstadoAtual):
 
         for i in range(len(EstadoAtual)):
             for j in range(len(EstadoAtual[0])):
-                SomaCusto += math.fabs((EstadoAtual[i][j] - Objetivo[i][j]))
+                SomaCusto += abs((EstadoAtual[i][j] - Objetivo[i][j]))
 
     return SomaCusto
 
@@ -212,7 +219,7 @@ def Start(Entrada):
 
 if __name__ == '__main__':
     cont = 0
-    x = 1
+    x = 3
 
     # Entrada Possível
     if x == 1:
