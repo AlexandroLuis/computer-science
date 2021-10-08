@@ -1,7 +1,4 @@
 #include <iostream>
-#include <cstdio>
-#include <stdlib.h>
-#include <limits.h>
 
 #define MAX 999
 int matriz[MAX][MAX];
