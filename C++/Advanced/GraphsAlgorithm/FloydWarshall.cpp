@@ -10,7 +10,7 @@ void FloydWarshall(int a){
 		for(int j = 0; j <= a; j++){
 			for(int k = 0; k <= a; k++){
 				if((Distancia[j][i] + Distancia[i][k]) < Distancia[j][k])
-                    Distancia[j][k] = Distancia[j][k] + Distancia[i][k];
+                 		     Distancia[j][k] = Distancia[j][i] + Distancia[i][k];
 			}
 		}
 	}
