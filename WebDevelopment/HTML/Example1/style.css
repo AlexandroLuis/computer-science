@@ -1,0 +1,19 @@
+a:link {
+  color: hotpink;
+}
+a:visited {
+  color: green;
+}
+a:hover {
+  color: hotpink;
+}
+a:active {
+  color: blue;
+}
+.bxo-div-ft {
+	display: inline;
+	width:45%;
+	padding: 20px;
+	text-align: center;
+	font-size: 20px;
+}
