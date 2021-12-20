@@ -1,3 +1,9 @@
+h2{
+	color:#0000ff;
+}
+h3{
+	color:#ff0f00;
+}
 a:link {
   color: hotpink;
 }
@@ -11,9 +17,18 @@ a:active {
   color: blue;
 }
 .bxo-div-ft {
-	display: inline;
-	width:45%;
 	padding: 20px;
 	text-align: center;
 	font-size: 20px;
+}
+.div-top{
+	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+	height:50%;
+}
+.meio{
+	width:95%;
+	margin-left: 30px;
+	border-bottom: 2px solid purple;
 }
