@@ -2,44 +2,76 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Página Inicial</title>
-		<style type="text/css"> @import url("style.css");</style>
+		<style type="text/css"> 
+			@import url("style.css");
+			@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+		</style>
+		<script src="https://kit.fontawesome.com/9baa0bb018.js" crossorigin="anonymous"></script>
 	</head>
-<body>
-	<div class="meio">
-		<div class="div-top">
-			<img src="https://images.unsplash.com/photo-1615751072497-5f5169febe17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGRvZ3xlbnwwfHwwfHw%3D&w=1000&q=80" width="300px" height="300px"></img>
-		</div>
-		<div class="div-top">
-			<h2><b>Informações Pessoais:<b></h4>
-			<h3>
-				<ul>
-					<li><strong>Nome: </strong><i>Alexandro Luis</i></li>
-					<li><strong>Endereço: </strong><i>Alguma Cidade - PR</i></li>
-					<li><strong>Email: </strong><i>AlexandroLuis@live.com</i></li>
-				</ul>
-			</h3>
-		</div>
-	</div>
-	<div class="meio">
-		<h2><b>Formação Academica:<b></h2>
-		<h3>
-			<ul>
-				<li><i>Cursando Ciência da Computação na Universidade Estadual do Centro-Oeste (<a href="https://www3.unicentro.br/" style="text-decoration: none;">UNICENTRO</a>)</i></li>
-			</ul>
-		</h3>
-	</div>
-	<div class="meio">
-		<h2><b>Habilidades em programação:<b></h2>
-		<h3>
+<body onLoad="habilidades();">
+	<header>
+		<input type="checkbox" name="" class="btn"/>
+		<div class="nav">
 			<ol>
-				<li><i>Programação desktop em C/C++, Py, Java</i></li>
-				<li><i>Programação Web em Py(Usando Django), PHP, Js</i></li>
-				<li><i>Programação Mobile Usando React js & firebase</i></li>
+				<li><a href="#"> Informações Pessoais </a></li>
+				<li><a href="#"> Formação Academica </a></li>
+				<li><a href="#"> Habilidades em Programação </a></li>
+				<li><a href="#"> Informações de Contato </a></li>
 			</ol>
-		</h3>
-	</div>
-	<div class="bxo-div-ft">
-		<h4>Olá</h4>
-	</div>
+		</div>
+	</header>
+	<br>
+	<main>
+		<div class="container">
+			<div class="div-top">
+				<img src="https://images.unsplash.com/photo-1615751072497-5f5169febe17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGRvZ3xlbnwwfHwwfHw%3D&w=1000&q=80" width="300px" height="300px"></img>
+			</div>
+			<div class="div-top">
+				<h2><b>Informações Pessoais:<b></h4>
+				<h3>
+					<ul>
+						<li><strong>Nome: </strong><i>Alexandro Luis</i></li>
+						<li><strong>Endereço: </strong><i>Alguma Cidade - PR</i></li>
+						<li><strong>Email: </strong><i>AlexandroLuis@live.com</i></li>
+					</ul>
+				</h3>
+			</div>
+			<hr>
+			<div id="special">
+				<h2><b>Formação Academica:<b></h2>
+				<h3>
+					<ul>
+						<li><i>Cursando Ciência da Computação na Universidade Estadual do Centro-Oeste (<a href="https://www3.unicentro.br/" style="text-decoration: none;">UNICENTRO</a>)</i></li>
+					</ul>
+				</h3>
+			</div>
+			<hr>
+			<div id="special">
+				<h2><b>Habilidades em programação:<b></h2>
+				<h3>
+					<ol id="output"></ol>
+				</h3>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<div class="footer">
+			<h5>Copyright © Alexandro 2022</h5>
+		</div>
+	</footer>
+
+	<!-- Script  -->
+	<script>
+		function habilidades(){
+			let habilidades = ["Programação desktop em C/C++, Py, Java", "Programação Web em Py(Usando Django), PHP, Js", "Programação Mobile Usando React js & firebase"]
+			let output = document.getElementById('output');
+			
+			for(var i = 0; i < habilidades.length; i++){
+      		 	let output1 = document.createElement('li');
+       			output1.appendChild(document.createTextNode(habilidades[i]));
+				output.appendChild(output1);
+			}
+		}
+	</script>
 </body>
 </html>
