@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <fieldset style="width: 50%; position: absolute;">
+            <legend>Tabuada</legend>
+            <label>Digite um numero entre 1 e 10: </label>
+            <input type="number" id="numero"></input>
+            <input type="submit" value="Calcular" onClick="calc()"></input>
+        </fieldset>
+        
+        <!-- Script  -->
+        <script>
+            function calc(){
+                var output = document.getElementById('numero').value;
+                if(output > 10){
+                    alert("Apenas números entre 0 e 10");
+                    window.close();
+                }
+                
+                for(var i = 0; i < 11; i++){
+                    document.write(i+" x "+output+" = "+i*output+"<br>");
+                }
+            }
+        </script>
+    </body>
+</html>
