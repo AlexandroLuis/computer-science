@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<title>Relógio</title>
+		<meta charset="UTF-8">
+		<script>
+			function relogio(){
+				var data = new Date();
+				var hor = data.getHours();
+				var min = data.getMinutes();
+				var seg = data.getSeconds();
+				
+				var horas=hor + ":" + min + ":" + seg;
+				document.getElementById("horas").value=horas;
+				
+				var datas = new Date().toLocaleDateString('pt-BR');
+				document.getElementById("datas").value=datas;
+			}
+			var timer=setInterval(relogio,1000);
+		</script>
+	</head>
+	<body>
+		<div style="margin-top: 20%; text-align: center">
+			<input type="text" id="datas" style="text-align:center; border:0; outline:0;font-size: 35px;" readonly>
+			<br>
+			<input type="text" id="horas" style="text-align:center; border:0; outline:0;font-size: 30px;" readonly>
+		</div>
+	</body>
+</html>
