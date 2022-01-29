@@ -1,0 +1,87 @@
+<!-- Form -->
+<!doctype html>
+<html lang="pt-br">
+<head>
+	<title>Cadastro</title>
+	<meta charset="UTF-8">
+	<style type="text/css"> 
+		@import url("style.css");
+	</style>
+</head>
+<body>
+	<form name="form">	
+		<div class="container" style="margin-top: 10%; text-align: justify;">
+			<div class="form">
+				<label>Digite seu nome: </label><br>
+				<label>Digite seu telefone: </label><br>
+				<label>Digite seu email: </label><br>
+				<label>Data de nascimento: </label><br>
+				<label>Mensagem:</label><br>
+			</div>
+			<div class="form">
+				<input type="text" id="nomeid" name="nome"></input><br>
+				<input type="text" id="telefoneid" name="telefone"></input><br>			
+				<input type="text" id="emailid" name="email"></input><br>			
+				<select id="dia"></select>
+                <select id="mes"></select>
+                <select id="ano"></select>		
+				<textarea style="outline: none;width: 103%;height: 100%;resize:none;"></textarea>
+				<input type="submit" onclick="Enviar();" value="Enviar"/>
+			</div>
+			
+		</div>
+	</form>
+	<script type="text/javascript">
+		function calcIdade() {
+            var aa = new Date();
+            var an = document.getElementById('ano').value;
+            var idade = aa.getFullYear() - an;
+            return idade;
+        }
+
+        function dia() {
+            var dia = document.getElementById("dia")
+            for (var i = 1; i <= 31; i++) {
+                var option = document.createElement("option")
+                    option.value = i
+                    option.text = i
+                dia.appendChild(option)
+            }
+        }
+
+        function mes() {
+            var mes = document.getElementById("mes")
+            for (var i = 1; i <= 12; i++) {
+                var option = document.createElement("option")
+                    option.value = i
+                    option.text = i
+                mes.appendChild(option)
+            }
+        }
+
+        function ano() {
+            var ano = document.getElementById("ano")
+            for (var i = 2022; i >= 1900; i--) {
+                var option = document.createElement("option")
+                option.value = i
+                option.text = i
+                ano.appendChild(option)
+            }
+        }
+
+		function Enviar(){
+			var nomeid = document.getElementById("nomeid").value;
+			var telefoneid = document.getElementById("telefoneid").value;
+			var emailid = document.getElementById("emailid").value;
+			var idadecalc = calcIdade();		
+
+			alert(`Olá ${nomeid}, do telefone: ${telefoneid}, e e-mail: ${emailid}, sua idade é: ${idadecalc} anos. A sua mensagem foi enviada com sucesso para nossa equipe de suporte.`)
+			//alert("Olá " + nomeid.value + ", do telefone: " + telefoneid.value + ", e email: " + emailid.value + ", sua idade é:" + idade.value + " e a sua mensagem foi enviada com sucesso para nossa equipe de suporte.");
+		}
+
+		dia();
+        mes();
+        ano();
+	</script>
+</body>	
+</html>
