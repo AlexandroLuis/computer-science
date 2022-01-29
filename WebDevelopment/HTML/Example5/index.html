@@ -1,0 +1,104 @@
+<!-- Verificador de email -->
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+	<title>Cadastro</title>
+	<meta charset="UTF-8">
+	<style type="text/css"> 
+		@import url("style.css");
+	</style>
+</head>
+<body>
+	<form name="form" onSubmit="Enviar();">	
+		<div class="container" style="margin-top: 10%; text-align: justify;">
+			<div class="form">
+				<label>Digite seu nome: </label><br>
+				<label>Digite seu telefone: </label><br>
+				<label>Digite seu email: </label><br><br>
+				<label>Data de nascimento: </label><br>
+				<label>Mensagem:</label><br>
+			</div>
+			<div class="form">
+				<input type="text" id="nomeid" name="nome" required></input><br>
+				<input type="text" id="telefoneid" name="telefone" required></input><br>			
+				<input type="text" id="emailid" required name=emailid/ onblur="validacaoEmail();"></input>
+                <span id="msgemail"></span><br>
+				<select id="dia"></select>
+                <select id="mes"></select>
+                <select id="ano"></select>		
+				<textarea id="mensagem" style="outline: none;width: 103%;height: 100%;resize:none;" required></textarea>
+				<input type="submit" value="Enviar"/>
+			</div>
+			
+		</div>
+	</form>
+	<script language="javascript">
+        function validacaoEmail() {
+            var emailid = document.getElementById("emailid");
+            usuario = emailid.value.substring(0, emailid.value.indexOf("@"));
+            dominio = emailid.value.substring(emailid.value.indexOf("@")+ 1, emailid.value.length);
+
+            if ((usuario.length >=1) && (dominio.length >=3) && (usuario.search("@")==-1) && 
+            (dominio.search("@")==-1) && (usuario.search(" ")==-1) && (dominio.search(" ")==-1) && 
+            (dominio.search(".")!=-1) && (dominio.indexOf(".") >=1)&& (dominio.lastIndexOf(".") < dominio.length - 1)){ 
+                document.getElementById("msgemail").innerHTML="<font color='green'>E-mail válido </font>";
+            }
+            else
+                document.getElementById("msgemail").innerHTML="<font color='red'>Email inválido </font>";
+        }
+
+		function calcIdade() {
+            var aa = new Date();
+            var an = document.getElementById('ano').value;
+            var idade = aa.getFullYear() - an;
+            return idade;
+        }
+
+        function dia() {
+            var dia = document.getElementById("dia")
+            for (var i = 1; i <= 31; i++) {
+                var option = document.createElement("option")
+                    option.value = i
+                    option.text = i
+                dia.appendChild(option)
+            }
+        }
+
+        function mes() {
+            var mes = document.getElementById("mes")
+            for (var i = 1; i <= 12; i++) {
+                var option = document.createElement("option")
+                    option.value = i
+                    option.text = i
+                mes.appendChild(option)
+            }
+        }
+
+        function ano() {
+            var ano = document.getElementById("ano")
+            for (var i = 2022; i >= 1900; i--) {
+                var option = document.createElement("option")
+                option.value = i
+                option.text = i
+                ano.appendChild(option)
+            }
+        }
+
+		function Enviar(){
+			var nomeid = document.getElementById("nomeid").value;
+			var telefoneid = document.getElementById("telefoneid").value;
+			var emailid = document.getElementById("emailid").value;
+            var mensagem = document.getElementById("mensagem").value;
+			var idadecalc = calcIdade();		
+
+			alert(`Olá ${nomeid}, do telefone: ${telefoneid}, e e-mail: ${emailid}, sua idade é: ${idadecalc} anos. A sua mensagem foi enviada com sucesso para nossa equipe de suporte.`)
+            //alert("Olá " + nomeid.value + ", do telefone: " + telefoneid.value + ", e email: " + emailid.value + ", sua idade é:" + idade.value + " e a sua mensagem foi enviada com sucesso para nossa equipe de suporte.");
+		}
+
+		dia();
+        mes();
+        ano();
+	</script>
+</body>	
+</html>
