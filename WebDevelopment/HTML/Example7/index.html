@@ -1,0 +1,69 @@
+<html>
+<head>
+
+</head>
+<body>
+    <form>
+        <label>Cep: </label>
+        <input type="text" id="cep" name="cep" value="" onblur="pesquisaCep(this.value)"/><br>
+
+        <label>Rua: </label>
+        <input type="text" id="rua" name="rua" /><br>
+
+        <label>Bairro: </label>
+        <input type="text" id="bairro" name="bairro" /><br>
+
+        <label>Cidade: </label>
+        <input type="text" id="cidade" name="cidade" /><br>
+        
+        <label>Estado: </label>
+        <input type="text" id="estado" name="estado" /><br>
+
+        <input type="submit" value="enviar" />
+    </form>
+
+    <script>
+        function limpaFormulario(){
+            document.getElementById("rua").value=("");
+            document.getElementById("bairro").value=("");
+            document.getElementById("cidade").value=("");
+            document.getElementById("estado").value=("");
+        }
+
+        function preencheFormulario(conteudo){
+            if(!("erro" in conteudo)){
+                document.getElementById("rua").value=(conteudo.logradouro);
+                document.getElementById("bairro").value=(conteudo.bairro);
+                document.getElementById("cidade").value=(conteudo.localidade);
+                document.getElementById("estado").value=(conteudo.uf);
+            }else{
+                limpaFormulario();
+                alert("preencheFormulario!");
+            }
+        }
+
+        function pesquisaCep(valor){
+            var cep = valor.replace(/\D/g, '');
+            if(cep != ""){
+                var validacep = /^[0-9]{8}$/;
+                if(validacep.test(cep)){
+                    document.getElementById("rua").value=("...");
+                    document.getElementById("bairro").value=("...");
+                    document.getElementById("cidade").value=("...");
+                    document.getElementById("estado").value=("...");
+
+                    var script = document.createElement('script');
+                    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=preencheFormulario';
+                    document.body.appendChild(script)
+                }else{
+                    limpaFormulario();
+                    alert("Cep Não Encontrado!");
+                }
+            }else{
+                limpaFormulario();
+            }
+        }
+
+    </script>
+</body>
+</html>
