@@ -6,7 +6,7 @@
         <script src="jquery.maskedinput-1.3.min.js"></script>
     </head>
 <body>
-    <form name="form" onSubmit="Enviar();">
+    <form name="form" action="Agradecimento.html" onSubmit="Enviar();">
         <!-- Dados Pessoais // nome, nascimento, rg, cpf, sexo -->
         <label for="nome">Nome: </label>
         <input type="text" id="nome" required><br>
@@ -47,10 +47,10 @@
         <input type="text" id="formacao" name="formacao" /><br>
 
         <label>Histórico Trabalhista: </label>
-        <input type="text" id="historico" name="historico" /><br>
+        <textarea id="historico" name="historico"></textarea><br>
 
         <label>Habilidades: </label>
-        <input type="text" id="habilidades" name="habilidades" /><br>
+        <textarea id="habilidades" name="habilidades"></textarea><br>
 
         <input type="submit" value="enviar" />
     </form>
@@ -102,7 +102,7 @@
             var nomeid = document.getElementById("nome").value;		
 
 			alert(`Olá ${nomeid}, Agradecemos sua submissão!`);	
-            window.location.href="Agradecimento.html";
+            window.location.replace("Agradecimento.html");
         }
     </script>
     <script>
