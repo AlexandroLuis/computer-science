@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    background-color: purple;
+}
+.container {
+    width: 100%;
+}
+.content {
+    box-shadow: 3px 3px 3px 3px rgb(39, 38, 38);
+    position: relative;
+    padding: 25px;
+    margin: 0 auto;
+    width: 70%;
+    background-color: white;
+}
+h2 {
+    text-align: center;
+}
+.nome {
+    float: left;
+    padding-right: 30px;
+}
+.cpf {
+    float: left;
+    padding-right: 40px;
+}
+.rua {
+    float: left;
+    padding-right: 50px;
+}
+.cidade {
+    float:left;
+    padding-right: 30px;
+}
+
+#nome, #nascimento, #rg, #cpf, #cep, #rua, #bairro, #cidade, #estado, #formacao, #historico, #habilidades {
+    margin-bottom: 10px;
+    width: 200px;
+}
+#formacao {
+    width: 230px;
+}
+.inputsDadosPessoais, .inputsEndereco, .inputsInfo {
+   padding-left: 100px;
+}
+.btn {
+    border: none;
+    height: 25px;
+    box-shadow: 1px 3px 3px 1px rgb(41, 39, 39);
+    background-color: purple;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+}
+.historico {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.habilidades {
+    margin-bottom: 25px;
+}
+.historico textarea {
+    width: 100%;
+    resize: none;
+}
+.habilidades textarea {
+    width: 100%;
+    resize: none;
+}
