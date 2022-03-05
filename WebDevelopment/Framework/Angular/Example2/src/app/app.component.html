@@ -1,0 +1,29 @@
+<h1>Mostrar Produtos</h1><br>
+<table>
+    <tr>
+        <td>Nome:</td>
+        <td>Preço:</td>
+        <td>Operação:</td>
+        <td></td>
+    </tr>
+    <tr *ngFor="let i of lista_produtos; let j = index">
+        <td>{{i.getNome()}}</td>
+        <td>{{i.getPreco()}}</td>
+        <td><button (click)="excluir(j)">Excluir</button></td>
+        <td><button (click)="editar(j)">editar</button></td>
+    </tr>
+</table>
+
+<hr>
+<div *ngIf="!edicao">
+    <h1>Adicionar Produtos</h1><br>
+</div>
+<div template #editarProduto>
+    <h1>Editar Produtos</h1><br>
+</div>
+
+    <label>Nome</label>
+    <input type="text" [(ngModel)] = "nome" /><br>
+    <label>Preco</label>
+    <input type="text" [(ngModel)] = "preco" /><br>
+    <button (click)="salvar();">Salvar</button>
