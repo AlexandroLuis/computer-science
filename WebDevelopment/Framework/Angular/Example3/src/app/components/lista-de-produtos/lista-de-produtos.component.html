@@ -1,0 +1,24 @@
+<button (click)="irParaCriarProduto()">Criar Produto</button>
+<button (click)="logout()">Logout</button>
+<h3>Olá </h3>
+<h1>Lista de Produtos</h1>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Preço</th>
+    <th>Operação</th>
+  </tr>
+  <tr *ngFor="let produto of lista_produtos">
+    <td>{{produto.nome}}</td>
+    <td>{{produto.preco}}</td>
+    <td>
+      <button (click)="excluir(produto)">Excluir</button>
+    </td>
+    <td>
+      <button (click)="editar(produto)">Editar</button>
+    </td>
+  </tr>
+</table>
+
+
+  

@@ -1,0 +1,15 @@
+<h1>Criar Produto</h1>
+<form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+    <label>Nome: </label>
+    <input type="text" formControlName="nome"><br>
+    <div *ngIf="formCadastrar.controls['nome'].touched">
+        <small *ngIf="formCadastrar.controls['nome'].hasError('required')" style="color: red;">O nome é obrigatório</small>
+        <small *ngIf="formCadastrar.controls['nome'].hasError('minlength')" style="color: red;">O campo nome precisa ter no mínimo 5 caracteres</small>
+    </div>
+    <label>Preço: </label>
+    <input type="number" formControlName="preco">
+    <div *ngIf="formCadastrar.controls['preco'].touched">
+        <small *ngIf="formCadastrar.controls['preco'].hasError('required')" style="color: red;">O preço é obrigatório</small>
+    </div>
+    <button type="submit">Salvar</button>
+</form>

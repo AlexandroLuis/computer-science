@@ -1,0 +1,18 @@
+<!-- <router-outlet></router-outlet> -->
+
+<h1>Salvar Imagem</h1>
+<input type="file" (change)="uploadFile($event)">
+<br><br>
+
+
+<hr>
+<h1>Exibir Imagem</h1>
+<ul>
+  <li *ngFor="let i of lista_imagens">
+    <h4>{{i.key}} - {{i.data.name}}</h4> <br>
+    <img style="width: 30%" src="{{ i.data.downloadURL }}">
+    <br>
+  </li>
+</ul>
+
+
