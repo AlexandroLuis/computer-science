@@ -17,11 +17,11 @@ constraints(N, Row, [R|Rs], [C|Cs]) :-
 	constraints(M, Row, Rs, Cs).
 
 rainha([], _, []).
-rainha([C|Cs], Row0, [Col|Solution]) :-
+rainha([C|Cs], Row0, [Col|solucao]) :-
 	Row is Row0+1,
 	select(Col-Vars, [C|Cs], tabuleiro),
 	arg(Row, Vars, Row-Row),
-	rainha(tabuleiro, Row, Solution).
+	rainha(tabuleiro, Row, solucao).
 
 
 /** Para Chamar a Função Use: "rainha(8, rainha)." **/
