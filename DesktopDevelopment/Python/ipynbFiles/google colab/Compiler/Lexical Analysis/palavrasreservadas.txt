@@ -1,0 +1,12 @@
+for
+do
+while
+if
+int
+float
+string
+char
+double
+print
+if
+else
